@@ -135,14 +135,17 @@ Figma: https://www.figma.com/design/2VwD5fdGWkb8wJjEbBMAnv/%E5%8D%92%E6%A5%AD%E5
 - [x] 作り込みはある程度完了している（Figmaを見て画面の作成ができる状態にある）
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/478ae9038d425a28784a2fef6106ff06.png)](https://gyazo.com/478ae9038d425a28784a2fef6106ff06)
+[![Image from Gyazo](https://i.gyazo.com/d325ad037615e05011baa04ebffabe08.png)](https://gyazo.com/d325ad037615e05011baa04ebffabe08)
 
 ### 各テーブルの解説
 - Usersテーブル:LINEログイン機能とLINE通知機能を実装する観点から、プロバイダー情報とユーザーIDを保存するためにprovider,uidカラムを設定しました。
+
 - Itemsテーブル:ユーザーが登録した情報の一覧として表示する情報を表示します。計算した通知日と、通知のON/OFFデータを保存するためにnotification_taggleカラムを設定しました。
   - next_notification_day:通知予定日
-  - notification_state:通知状態（ON/OFFをtrue,falseで管理する予定）
-- Jenresテーブル:登録した詳細な情報を保存します。
+  - last_notification_day:前回通知日
+  - notification_interval:通知予定日までの間隔
+
+- Consumablesテーブル:登録した詳細な情報を保存します。
   - name:商品名
   - volume:内包量
   - used_count_per_day:一日の使用回数
