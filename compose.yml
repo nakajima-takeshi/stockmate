@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:8.0
+    platform: linux/amd64
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3307:3306
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -uroot -ppassword
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bash -c "bundle install && bundle exec rails db:prepare && rm -f tmp/pids/server.pid && ./bin/dev"
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/myapp
+      - bundle_data:/usr/local/bundle:cached
+      - node_modules:/myapp/node_modules
+    environment:
+      TZ: Asia/Tokyo
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  mysql_data:
+  bundle_data:
+  node_modules: # 追記
