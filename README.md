@@ -135,18 +135,18 @@ Figma: https://www.figma.com/design/2VwD5fdGWkb8wJjEbBMAnv/%E5%8D%92%E6%A5%AD%E5
 - [x] 作り込みはある程度完了している（Figmaを見て画面の作成ができる状態にある）
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/d325ad037615e05011baa04ebffabe08.png)](https://gyazo.com/d325ad037615e05011baa04ebffabe08)
+[![Image from Gyazo](https://i.gyazo.com/1c93de0eb2549a3c930d66a3f4ae99ea.png)](https://gyazo.com/1c93de0eb2549a3c930d66a3f4ae99ea)
 
 ### 各テーブルの解説
 - Usersテーブル:LINEログイン機能とLINE通知機能を実装する観点から、プロバイダー情報とユーザーIDを保存するためにprovider,uidカラムを設定しました。
 
-- Itemsテーブル:ユーザーが登録した情報の一覧として表示する情報を表示します。計算した通知日と、通知のON/OFFデータを保存するためにnotification_taggleカラムを設定しました。
-  - next_notification_day:通知予定日
-  - last_notification_day:前回通知日
-  - notification_interval:通知予定日までの間隔
-
-- Consumablesテーブル:登録した詳細な情報を保存します。
+- Itemsテーブル:ユーザーが登録した情報を表示します。
   - name:商品名
   - volume:内包量
   - used_count_per_day:一日の使用回数
   - memo:フリーメモ
+
+- Notificationsテーブル:算出された通知日を保存します。在庫補充された際、通知日の再設定をする際に使用する前回通知日やインターバル情報を保存するため、通知関連はItemsテーブルから独立させたテーブルに保存します。
+  - next_notification_day:通知予定日
+  - last_notification_day:前回通知日
+  - notification_interval:通知予定日までの間隔
