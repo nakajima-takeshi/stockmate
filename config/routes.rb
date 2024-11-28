@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "items/index"
+  get "items/show"
+  get "items/new"
+  get "items/edit"
   root "static_pages#top"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
