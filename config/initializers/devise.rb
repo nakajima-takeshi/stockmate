@@ -310,5 +310,5 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-  config.omniauth :line, ENV['LINE_LOGIN_KEY'], ENV['LINE_LOGIN_SECRET']
+  config.omniauth :line, ENV['LINE_LOGIN_KEY'], ENV['LINE_LOGIN_SECRET'], scope: 'profile openid', redirect_uri: ENV['LINE_CALLBACK_URL'] || 'https://stockmate-a7c103b7b0ba.herokuapp.com/auth/line/callback'
 end
