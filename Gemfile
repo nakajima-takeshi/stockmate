@@ -25,6 +25,9 @@ gem "jbuilder"
 
 gem "hotwire-rails"
 
+gem "devise"
+gem "rails-i18n"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

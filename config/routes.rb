@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :installs
   root "static_pages#top"
 
   resources :items
