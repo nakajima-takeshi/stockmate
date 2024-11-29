@@ -2,5 +2,8 @@
   <div class="flex-1 ">
     <%= link_to 'Stock Mate', root_path, class: "btn btn-ghost text-xl" %>
   </div>
+  <div class="mt-5 flex space-x-3">
     <button class="bg-green-800 hover:bg-green-700 text-white rounded px-4 py-2"><%= link_to "マイページ", items_path %></button>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bg-green-800 hover:bg-green-700 text-white rounded px-4 py-2" %>
+  </div>
 </div>
