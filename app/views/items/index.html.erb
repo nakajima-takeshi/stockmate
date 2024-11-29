@@ -1,29 +1,22 @@
-<%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>
-
-<div class="p-4 text-bold text-primary">
-  <% if @items.present? %>
-    <ul>
-      <% @items.each do |item| %>
-        <div class="mx-auto w-1/2 rounded shadow-lg border overflow-hidden mt-5 bg-white">
-          <div class="relative pb-[60%]">
-            <img src="https://picsum.photos/300/200" class="absolute object-cover h-full w-full">
-          </div>
-          <div class="p-4 text-2xl font-medium text-gray-700">
-            <li>
+<div class="h-screen m-8 p-8 bg-base-100 shadow-lg ">
+  <div class="h-screen p-4 font-bold text-primary">
+  <%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>
+    <% if @items.present? %>
+      <ul class="space-y-5">
+        <% @items.each do |item| %>
+          <li class="mx-auto w-1/2 rounded shadow-lg border overflow-hidden bg-white">
+            <div class="relative pb-[60%]">
+              <img src="https://picsum.photos/300/200" class="absolute object-cover h-full w-full">
+            </div>
+            <div class="p-4 text-2xl font-medium text-gray-700">
               <%= link_to item.name, item_path(item), class: 'text-blue-500 hover:underline' %>
               <p>使用量: <%= item.used_count_per_day %> / 日</p>
-            </li>
-          </div>
-        </div>
-      <% end %>
-    </ul>
-  <% else %>
-    <div class="mb-3">掲示板がありません</div>
-  <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="mb-3 text-center text-gray-500">掲示板がありません</div>
+    <% end %>
+  </div>
 </div>
-<button class="bg-green-800 hover:bg-green-700 text-white rounded px-4 py-2">
-  <%= link_to "トップページ", root_path %>
-</button>
-<button class="bg-green-800 hover:bg-green-700 text-white rounded px-4 py-2">
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-</button>
