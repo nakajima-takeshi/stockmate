@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[line]
 
-	def social_profile(provider)
+  def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first
   end
 

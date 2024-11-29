@@ -1,11 +1,10 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
     def line
         basic_action
     end
 
     private
-    
+
     def basic_action
         @omniauth = request.env["omniauth.auth"]
         if @omniauth.present?

@@ -26,10 +26,15 @@ gem "jbuilder"
 gem "hotwire-rails"
 
 gem "devise"
-gem "rails-i18n"
+
+gem "devise-i18n"
+
+gem "devise-i18n-views"
 
 gem "omniauth-line"
-gem 'omniauth-rails_csrf_protection'
+
+gem "omniauth-rails_csrf_protection"
+
 gem "dotenv-rails"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]

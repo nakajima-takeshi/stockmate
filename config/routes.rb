@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # ログアウトのルーティングをscopeで指定
   devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
+    get "/users/sign_out" => "devise/sessions#destroy"
   end
 
   root "static_pages#top"
