@@ -17,7 +17,13 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body h-screen>
-    <%= yield %>
+  <body class="bg-green-100 h-screen">
+    <% if user_signed_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+      <%= yield %>
+    <%= render 'shared/footer' %>
   </body>
 </html>
