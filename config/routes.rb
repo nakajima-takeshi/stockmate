@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   root "static_pages#top"
 
-  post 'callback' => 'notification#callback'
+  post "callback" => "notification#callback"
 
   resources :items
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
