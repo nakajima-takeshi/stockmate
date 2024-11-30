@@ -25,6 +25,8 @@ gem "jbuilder"
 
 gem "hotwire-rails"
 
+gem "line-bot-api"
+
 gem "devise"
 
 gem "devise-i18n"
