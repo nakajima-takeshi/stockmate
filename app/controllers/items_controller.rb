@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @items = current_user.items.includes(:user).order(created_at: :desc)
@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
     @item = current_user.items.build
   end
 
-  def created
+  def create
     @item = current_user.items.build(item_params)
     if @item.save
       redirect_to items_path, notice: "新たに日用品を登録しました"
