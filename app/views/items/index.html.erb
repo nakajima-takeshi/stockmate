@@ -1,5 +1,7 @@
+<div class="bg-green-100">
 <div class="h-screen m-8 p-8 bg-base-100 shadow-lg ">
-  <div class="h-screen p-4 font-bold text-primary">
+  <div class="h-screen p-4 font-bold">
+  <%= render 'shared/header' %>
   <%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>
     <% if @items.present? %>
       <ul class="space-y-5">
@@ -16,7 +18,8 @@
         <% end %>
       </ul>
     <% else %>
-      <div class="mb-3 text-center text-gray-500">掲示板がありません</div>
+      <div class="mb-3 text-center text-gray-500">登録がありません</div>
     <% end %>
   </div>
+</div>
 </div>

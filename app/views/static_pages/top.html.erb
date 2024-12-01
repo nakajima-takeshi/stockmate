@@ -1,5 +1,12 @@
+<div class="bg-green-100">
 <div class="h-screen m-8 p-8 bg-base-100 shadow-lg ">
+    <% if user_signed_in? %>
+        <%= render 'shared/header' %>
+    <% else %>
+        <%= render 'shared/before_login_header' %>
+    <% end %>
     <div class="text-8xl font-bold text-green-800 underline py-5">
-    Stock Mate
+        Stock Mate
     </div>
+</div>
 </div>
