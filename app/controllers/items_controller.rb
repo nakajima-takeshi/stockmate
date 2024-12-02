@@ -39,8 +39,11 @@ class ItemsController < ApplicationController
 
   def destroy
     set_item
-    @item.destroy
-    redirect_to items_path, notice: "日用品を削除しました"
+    if @item.destroy
+      redirect_to item_path, notice: "日用品を削除しました"
+    else
+      redirect_to item_path, alert: "削除に失敗しました"
+    end
   end
 
   private
