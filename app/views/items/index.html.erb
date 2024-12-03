@@ -2,23 +2,35 @@
 <div class="h-screen m-8 p-8 bg-base-100 shadow-lg ">
   <div class="h-screen p-4 font-bold">
   <%= render 'shared/header' %>
-  <%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>
+  <%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>はこちら
     <% if @items.present? %>
       <ul class="space-y-5">
         <% @items.each do |item| %>
-          <li class="mx-auto w-1/2 rounded shadow-lg border overflow-hidden bg-white">
-            <div class="relative pb-[60%]">
-              <img src="https://picsum.photos/300/200" class="absolute object-cover h-full w-full">
+          <div class="flex bg-base-300 shadow-lg shadow-gray-500/50 rounded-lg hover:shadow">
+            <a href="<%= item_path(item) %>", class="flex-shrink-0 hidden md:block">
+              <img class="rounded-lg w-56 border-4 border-base-300" src="https://picsum.photos/300/200" alt="<%= item.name %>">
+            </a>
+            <div class="ml-6 flex-grow relative">
+              <div>
+                <h3 class="text-4xl text-gray-800 font-semibold">Jenre.name</h3>
+                <p class="text-3xl">使用量: <%= item.used_count_per_day %> / 日</p>
+              </div>
+              <div class="absolute top-2 right-2 flex space-x-2">
+                <div class="flex justify-end space-x-6">
+                  <%= link_to edit_item_path(item), class: "text-gray-500 hover:text-gray-700" do %>
+                    <i class="fas fa-pen text-3xl"></i>
+                  <% end %>
+                  <%= link_to @item, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "text-gray-500 hover:text-gray-700" do %>
+                    <i class="fas fa-trash text-3xl"></i>
+                  <% end %>
+                </div>
+              </div>
             </div>
-            <div class="p-4 text-2xl font-medium text-gray-700">
-              <%= link_to item.name, item_path(item), class: 'text-blue-500 hover:underline' %>
-              <p>使用量: <%= item.used_count_per_day %> / 日</p>
-            </div>
-          </li>
+          </div>
         <% end %>
       </ul>
     <% else %>
-      <div class="mb-3 text-center text-gray-500">登録がありません</div>
+      <div class="mb-3 text-center text-3xl text-gray-500">登録がありません</div>
     <% end %>
   </div>
 </div>
