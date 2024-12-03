@@ -1,9 +1,8 @@
-<div class="bg-green-100">
-<div class="h-screen m-8 p-8 bg-base-100 shadow-lg ">
-  <div class="h-screen p-4 font-bold">
-  <%= render 'shared/header' %>
-  <%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>はこちら
-    <% if @items.present? %>
+<div class="bg-green-100 py-8">
+  <div class="h-screen m-8 p-8 bg-base-100 shadow-lg ">
+    <div class="p-4 font-bold">
+      <%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>はこちら
+      <% if @items.present? %>
       <ul class="space-y-5">
         <% @items.each do |item| %>
           <div class="flex bg-base-300 shadow-lg shadow-lg rounded-lg">
@@ -13,6 +12,7 @@
             <div class="ml-6 flex-grow relative">
               <div>
                 <h3 class="text-4xl text-gray-800 font-semibold">Jenre.name</h3>
+                <p class="text-3xl">商品名: <%= item.name %></p>
                 <p class="text-3xl">使用量: <%= item.used_count_per_day %> / 日</p>
               </div>
               <div class="absolute top-2 right-2 flex space-x-2">
@@ -29,9 +29,9 @@
           </div>
         <% end %>
       </ul>
-    <% else %>
-      <div class="mb-3 text-center text-3xl text-gray-500">登録がありません</div>
-    <% end %>
+      <% else %>
+        <div class="mb-3 text-center text-3xl text-gray-500">登録がありません</div>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>
