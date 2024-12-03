@@ -6,8 +6,8 @@
     <% if @items.present? %>
       <ul class="space-y-5">
         <% @items.each do |item| %>
-          <div class="flex bg-base-300 shadow-lg shadow-gray-500/50 rounded-lg hover:shadow">
-            <a href="<%= item_path(item) %>", class="flex-shrink-0 hidden md:block">
+          <div class="flex bg-base-300 shadow-lg shadow-lg rounded-lg">
+            <a href="<%= item_path(item) %>", class="flex-shrink-0 hidden md:block hover:shadow-xl transition-shadow">
               <img class="rounded-lg w-56 border-4 border-base-300" src="https://picsum.photos/300/200" alt="<%= item.name %>">
             </a>
             <div class="ml-6 flex-grow relative">
@@ -20,7 +20,7 @@
                   <%= link_to edit_item_path(item), class: "text-gray-500 hover:text-gray-700" do %>
                     <i class="fas fa-pen text-3xl"></i>
                   <% end %>
-                  <%= link_to @item, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "text-gray-500 hover:text-gray-700" do %>
+                  <%= link_to item_path(item), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "text-gray-500 hover:text-gray-700" do %>
                     <i class="fas fa-trash text-3xl"></i>
                   <% end %>
                 </div>

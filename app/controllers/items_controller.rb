@@ -38,11 +38,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    set_item
-    if @item.destroy
-      redirect_to item_path, notice: "日用品を削除しました"
+    item = Item.find(params[:id])
+    if item.destroy
+      redirect_to items_path, notice: "日用品を削除しました"
     else
-      redirect_to item_path, alert: "削除に失敗しました"
+      redirect_to items_path, alert: "削除に失敗しました"
     end
   end
 
