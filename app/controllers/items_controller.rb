@@ -53,6 +53,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :volume, :used_count_per_day, :memo)
+    params.require(:item).permit(:category, :name, :volume, :used_count_per_day, :memo)
   end
 end
