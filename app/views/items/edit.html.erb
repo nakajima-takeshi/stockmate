@@ -4,7 +4,7 @@
             <div class="font-bold mt-8 text-center text-5xl text-green-800 mb-6">編集</div>
             <div data-controller="items">
                 <%= form_with model: @item, local: true do |form| %>
-
+                    <%= render "shared/error_messages", object: @item %>
                 <div class="mb-4 bg-gray-50 p-4 rounded">
                     <%= form.label :category, 'カテゴリ', class: 'font-bold' %>
                     <%= form.select :category, [

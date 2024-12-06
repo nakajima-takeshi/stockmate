@@ -1,0 +1,10 @@
+<% if object.errors.any? %>
+  <div class="bg-red-100 text-red-700 p-4 rounded">
+    <h2 class="font-bold">以下のエラーがあります:</h2>
+    <ul>
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
