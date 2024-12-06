@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 // Stimulusのコントローラーを定義　Controllerクラスを拡張して、新しいクラスを作成
 export default class extends Controller {
@@ -10,15 +10,15 @@ export default class extends Controller {
     this.categorySelectTarget.addEventListener('change', () => this.updateUnit());
   }
 
-  updateUnit(){
+  updateUnit() {
     let unit = "";
     const value = this.categorySelectTarget.value;
 
-    switch(value){
+    switch(value) {
       case "shampoo":
       case "body_soap":
-      case "fabric softeners":
-      case "dishwashing detergent":
+      case "fabric_softener":
+      case "dishwashing_detergent":
       case "lotion":
       case "serum":
         unit = 'mL';
@@ -31,8 +31,8 @@ export default class extends Controller {
         unit = 'mg';
         break;
       case "others":
+      default:
         unit = ''
-        break;
     }
     this.unitTarget.textContent = unit;
   }

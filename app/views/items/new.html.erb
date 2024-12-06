@@ -3,6 +3,7 @@
     <div class="p-4">
       <div class="font-bold mt-8 text-center text-5xl text-green-800 mb-6">新規登録</div>
 
+    <div data-controller="items">
       <%= form_with model: @item, local: true do |form| %>
 
       <div class="mb-4 bg-gray-50 p-4 rounded">
@@ -20,8 +21,10 @@
         ['保湿クリーム', 'moisturising_cream'], 
         ['洗顔料', 'face_wash'], 
         ['日焼け止め', 'sunscreen'], 
-        ['その他', 'others']], {}, { 
+        ['その他', 'others']], 
+        {}, { 
         id: 'category-select', 
+        data: { items_target: "categorySelect" }, 
         class: "block text-gray-700 font-bold mb-2 w-80 px-4 py-2 border border-gray-300 rounded shadow " } %>
       </div>
       <div class="mb-4 bg-gray-50 p-4 rounded">
@@ -48,6 +51,7 @@
         <%= form.submit '登録', class: "bg-green-800 hover:bg-green-700 text-white font-medium py-3 px-12 rounded text-center" %>
       </div>
       <% end %>
+    </div>
     </div>
   </div>
 </div>
