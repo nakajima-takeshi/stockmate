@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to items_path, notice: "新たに日用品を登録しました"
     else
-      render :new
+      render :new, alert: '登録に失敗しました。'
     end
   end
 
@@ -53,6 +53,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :volume, :used_count_per_day, :memo)
+    params.require(:item).permit(:category, :name, :volume, :used_count_per_day, :memo)
   end
 end
