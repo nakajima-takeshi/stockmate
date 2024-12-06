@@ -7,7 +7,7 @@ class Item < ApplicationRecord
     validates :used_count_per_day, presence: true, numericality: { only_integer: true, other_than: 0 }
     validates :memo, length: { maximum: 65_535 }, allow_nil: true
 
-    CATEGORY_NAME = {
+    CATEGORY_NAMES = {
         "shampoo" => "シャンプー",
         "body_soap" => "ボディソープ",
         "laundry_detergent_powder" => "洗濯用洗剤(粉)",
@@ -23,6 +23,6 @@ class Item < ApplicationRecord
     }.freeze
 
     def category_name
-        CATEGORY_NAME[category]
+        CATEGORY_NAMES[self.category]
     end
 end
