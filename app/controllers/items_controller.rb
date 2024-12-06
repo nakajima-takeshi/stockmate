@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to items_path, notice: "新たに日用品を登録しました"
     else
-      render :new, alert: '登録に失敗しました。'
+      render :new, status: :unprocessable_entity # エラーメッセージ表示
     end
   end
 
@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
         redirect_to items_path(@item), notice: "登録内容を更新しました"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity # エラーメッセージ表示
     end
   end
 

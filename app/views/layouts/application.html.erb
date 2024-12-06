@@ -25,7 +25,9 @@
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
+    <div class="pt-16">
       <%= yield %>
+    </div>
     <%= render 'shared/footer' %>
   </body>
 </html>
