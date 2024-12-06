@@ -7,13 +7,17 @@
         <% @items.each do |item| %>
           <div class="flex bg-base-300 shadow-lg shadow-lg rounded-lg">
             <a href="<%= item_path(item) %>", class="flex-shrink-0 hidden md:block hover:shadow-xl transition-shadow">
-              <img class="rounded-lg w-56 border-4 border-base-300" src="https://picsum.photos/300/200" alt="<%= item.name %>">
+              <img class="rounded-lg w-56 border-4 border-base-300" src="https://picsum.photos/300/180" alt="<%= item.name %>">
             </a>
-            <div class="ml-6 flex-grow relative">
-              <div>
-                <h3 class="text-4xl text-gray-800 font-semibold">Jenre.name</h3>
-                <p class="text-3xl">商品名: <%= item.name %></p>
-                <p class="text-3xl">使用量: <%= item.used_count_per_day %> / 日</p>
+            <div class="ml-6 flex-grow relative flex flex-col justify-center items-start h-32">
+              <div class="flex justify-center items-center mb-1">
+                <p class="text-lg">カテゴリ: <%= item.category_name %></p>
+              </div>
+              <div class="flex justify-center items-center my-2">
+                <p class="text-lg">商品名: <%= item.name %></p>
+              </div>
+              <div class="flex justify-center items-center mt-1">
+                <p class="text-3xl">次回の通知日まであと、 </p>
               </div>
               <div class="absolute top-2 right-2 flex space-x-2">
                 <div class="flex justify-end space-x-6">
