@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    attributes:
+      item:
+        category: "カテゴリー"
+        name: "名前"
+        volume: "容量"
+        used_count_per_day: "1日の使用量"
+        memo: "メモ"
+    errors:
+      models:
+        item:
+          attributes:
+            category:
+              blank: "を入力してください。"
+            name:
+              blank: "を入力してください。"
+            volume:
+              blank: "を入力してください。"
+              not_a_number: "は数値で入力してください。"
+            used_count_per_day:
+              blank: "を入力してください。"
+              not_a_number: "は数値で入力してください。"
+  categories:
+    shampoo: "シャンプー"
+    body_soap: "ボディソープ"
+    laundry_detergent_powder: "洗濯用洗剤(粉)"
+    laundry_detergent_liquid: "洗濯用洗剤(液)"
+    fabric_softeners: "柔軟剤"
+    dishwashing_detergent: "食器用洗剤"
+    lotion: "化粧水"
+    serum: "美容液"
+    moisturising_cream: "保湿クリーム"
+    face_wash: "洗顔料"
+    sunscreen: "日焼け止め"
+    others: "その他"

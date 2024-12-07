@@ -6,7 +6,7 @@
                 <%= form_with model: @item, local: true do |form| %>
                     <%= render "shared/error_messages", object: @item %>
                 <div class="mb-4 bg-gray-50 p-4 rounded">
-                    <%= form.label :category, 'カテゴリ', class: 'font-bold' %>
+                    <%= form.label :category, 'カテゴリー', class: 'font-bold' %>
                     <%= form.select :category, [
                     ['選択してください', ''], 
                     ['シャンプー', 'shampoo'], 
