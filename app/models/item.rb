@@ -5,7 +5,8 @@ class Item < ApplicationRecord
     validates :category, presence: true
     validates :name, presence: true, length: { maximum: 255 }
     validates :volume, presence: true, numericality: { only_integer: true, other_than: 0 }
-    validates :used_count_per_day, presence: true, numericality: { other_than: 0 }
+    # 毎日使わない場合、初回は１と登録してもらった後にユーザーに手動で調整してもらう
+    validates :used_count_per_day, presence: true, numericality: { only_integer: true, other_than: 0 }
     validates :memo, length: { maximum: 65_535 }, allow_nil: true
 
     # 一回の平均使用量
@@ -29,11 +30,10 @@ class Item < ApplicationRecord
         # 一日の使用量
         daily_usage = average_daily_usage * self.used_count_per_day
 
-        # 通知日の算出
         days = 0
         while true
             reminding_volume = self.volume - (daily_usage * days)
-            if reminding_volume <= (self.volume * 1.0 / 3 )
+            if reminding_volume <= (self.volume * 1.0 / 3)
                 break
             else
                 days += 1
