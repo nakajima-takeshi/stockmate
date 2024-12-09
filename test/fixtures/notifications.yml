@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item: one
+  next_notification_date: 2024-12-09
+  last_notification_date: 2024-12-09
+  notification_interval: 1
+
+two:
+  item: two
+  next_notification_date: 2024-12-09
+  last_notification_date: 2024-12-09
+  notification_interval: 1

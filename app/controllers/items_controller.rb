@@ -18,6 +18,10 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.build(item_params)
     if @item.save
+      # オブジェクトを初期化
+      @item.create_notification(
+        next_notification_day: @item.calculate_next_notification_day
+        )
       redirect_to items_path, notice: "新たに日用品を登録しました"
     else
       render :new, status: :unprocessable_entity # エラーメッセージ表示
@@ -31,6 +35,7 @@ class ItemsController < ApplicationController
   def update
     set_item
     if @item.update(item_params)
+      @item.notification.update_next_notification_day
         redirect_to items_path(@item), notice: "登録内容を更新しました"
     else
       render :edit, status: :unprocessable_entity # エラーメッセージ表示
