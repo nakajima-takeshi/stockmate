@@ -24,8 +24,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_09_110815) do
 
   create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "item_id", null: false
-    t.date "next_notification_date"
-    t.date "last_notification_date"
+    t.date "next_notification_day"
+    t.date "last_notification_day"
     t.integer "notification_interval"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

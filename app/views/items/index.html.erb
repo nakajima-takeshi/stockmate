@@ -12,13 +12,14 @@
             </a>
             <div class="ml-6 flex-grow relative flex flex-col justify-center items-start h-32">
               <div class="flex justify-center items-center mb-1">
-                <p class="text-lg">カテゴリー: <%= t("categories.#{item.category}") %></p>
+                <p class="text-2xl">カテゴリー : <%= t("categories.#{item.category}") %></p>
               </div>
               <div class="flex justify-center items-center my-2">
-                <p class="text-lg">商品名: <%= item.name %></p>
+                <p class="text-lg">商品名 : <%= item.name %></p>
               </div>
-              <div class="flex justify-center items-center mt-1">
-                <p class="text-3xl">次回の通知日まであと、 </p>
+              <div class="flex flex-auto justify-center items-center mt-1">
+                <p class="text-3xl">次回の通知日 : </p>
+                <p class="text-3xl font-bold text-red-600"> <%= item.notification.next_notification_day %></p>
               </div>
               <div class="absolute top-2 right-2 flex space-x-2">
                 <div class="flex justify-end space-x-6">
