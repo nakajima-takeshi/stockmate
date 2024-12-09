@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
     belongs_to :user
+    has_one :notification, dependent: :destroy
 
     validates :category, presence: true
     validates :name, presence: true, length: { maximum: 255 }
