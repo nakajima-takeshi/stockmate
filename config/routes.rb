@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   root "static_pages#top"
 
-  post "callback" => "notification#callback"
+  post "callback" => "linebot#callback"
 
   resources :items
   resources :notifications
