@@ -21,6 +21,10 @@ ja:
             used_count_per_day:
               blank: "を入力してください。"
               not_a_number: "は数値で入力してください。"
+        notification:
+          attributes:
+            next_notification_day:
+              blank: "を入力してください。"
   categories:
     shampoo: "シャンプー"
     body_soap: "ボディソープ"
