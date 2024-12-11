@@ -12,19 +12,22 @@ ja:
         item:
           attributes:
             category:
-              blank: "を入力してください。"
+              blank: "を入力してください"
             name:
-              blank: "を入力してください。"
+              blank: "を入力してください"
             volume:
-              blank: "を入力してください。"
-              not_a_number: "は数値で入力してください。"
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
             used_count_per_day:
-              blank: "を入力してください。"
-              not_a_number: "は数値で入力してください。"
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
         notification:
           attributes:
             next_notification_day:
-              blank: "を入力してください。"
+              past_date: "通知日は今日以降の日付を入力してください"
+              too_far: "通知日は１年以内の日付を入力してください"
+      messages:
+        blank: "通知日を入力してください"
   categories:
     shampoo: "シャンプー"
     body_soap: "ボディソープ"
