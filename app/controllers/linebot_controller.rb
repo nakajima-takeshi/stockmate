@@ -1,4 +1,4 @@
-class LineBotController < ApplicationController
+class LinebotController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def callback
