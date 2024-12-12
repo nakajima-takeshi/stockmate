@@ -15,6 +15,7 @@ class Notification < ApplicationRecord
 
   private
 
+  # カスタムバリデーション
   def valid_update_next_notification_day
     if next_notification_day.blank?
       errors.add(:next_notification_day, :blank_field)

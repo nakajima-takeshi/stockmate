@@ -41,4 +41,8 @@ class Item < ApplicationRecord
         end
         Date.today + days
     end
+
+    def calculate_interval(next_notification_day)
+        (next_notification_day - Date.today).to_i
+    end
 end
