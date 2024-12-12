@@ -16,16 +16,23 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = current_user.items.build(item_params)
-    if @item.save
+    ActiveRecord::Base.transaction do
+      @item = current_user.items.build(item_params)
+      if @item.save
+        next_notification_day = @item.calculate_next_notification_day
+        notification_interval = @item.calculate_interval(next_notification_day)
       # オブジェクトを初期化
-      @item.create_notification(
-        next_notification_day: @item.calculate_next_notification_day
+        @item.create_notification(
+          next_notification_day: next_notification_day,
+          notification_interval: notification_interval
         )
-      redirect_to items_path, notice: "新たに日用品を登録しました"
-    else
-      render :new, status: :unprocessable_entity # エラーメッセージ表示
+        redirect_to items_path, notice: "新たに日用品を登録しました"
+      else
+        raise ActiveRecord::Rollback
+      end
     end
+  rescue ActiveRecord::Rollback
+    render :new, status: :unprocessable_entity # エラーメッセージ表示
   end
 
   def edit; end
