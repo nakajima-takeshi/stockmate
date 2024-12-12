@@ -1,14 +1,14 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_item, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_item, only: [ :show, :edit, :update ]
 
   def index
     @items = current_user.items.includes(:user).order(created_at: :desc)
   end
 
   def show
-    set_item
+    @notification = current_user.items.joins(:notification).find(params[:id]).notification
   end
 
   def new
@@ -28,12 +28,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-    set_item
-  end
+  def edit; end
 
   def update
-    set_item
     if @item.update(item_params)
       @item.notification.item_update_next_notification_day
         redirect_to items_path(@item), notice: "登録内容を更新しました"

@@ -1,15 +1,14 @@
 class NotificationsController < ApplicationController
     before_action :authenticate_user!
 
-    before_action :set_notification, only: [:edit, :update]
+    before_action :set_notification, only: [ :edit, :update ]
 
-    def edit
-    end
+    def edit; end
 
     def update
         if @notification.update(notification_params)
             @notification.notification_update_next_notification_day(@notification.next_notification_day)
-            redirect_to items_path, notice: '通知日を更新しました'
+            redirect_to items_path, notice: "通知日を更新しました"
         else
             render :edit, status: :unprocessable_entity
         end
