@@ -7,7 +7,9 @@ class ItemsController < ApplicationController
     @items = current_user.items.includes(:user).order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    @notification = current_user.items.joins(:notification).find(params[:id]).notification
+  end
 
   def new
     @item = current_user.items.build

@@ -1,6 +1,12 @@
-<%= form_with model: @notification, local: true do |f| %>
-    <%= render "shared/error_messages", object: @notification %>
-    <%= f.label :next_notification_day, "次回通知日" %>
-    <%= f.date_field :next_notification_day %>
-    <%= f.submit "更新" %>
-<% end %>
+<div class="bg-green-100 py-8 h-screen">
+    <div class="m-8 p-8 bg-base-100 shadow-lg">
+        <div class="p-4 font-bold">
+            <%= form_with model: @notification, local: true do |f| %>
+                <%= render "shared/error_messages", object: @notification %>
+                <%= f.label :next_notification_day, "次回通知日" %>
+                <%= f.date_field :next_notification_day %>
+                <%= f.submit "更新" %>
+            <% end %>
+        </div>
+    </div>
+</div>
