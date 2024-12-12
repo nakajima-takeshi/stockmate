@@ -7,20 +7,28 @@ ja:
         volume: "容量"
         used_count_per_day: "1日の使用量"
         memo: "メモ"
+      notification:
+        next_notification_day: "通知日"
     errors:
       models:
         item:
           attributes:
             category:
-              blank: "を入力してください。"
+              blank: "を入力してください"
             name:
-              blank: "を入力してください。"
+              blank: "を入力してください"
             volume:
-              blank: "を入力してください。"
-              not_a_number: "は数値で入力してください。"
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
             used_count_per_day:
-              blank: "を入力してください。"
-              not_a_number: "は数値で入力してください。"
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+        notification:
+          attributes:
+            next_notification_day:
+              blank_field: "を入力してください"
+              past_date: "は今日以降の日付を入力してください"
+              too_far: "は１年以内の日付を入力してください"
   categories:
     shampoo: "シャンプー"
     body_soap: "ボディソープ"
