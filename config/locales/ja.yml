@@ -7,6 +7,8 @@ ja:
         volume: "容量"
         used_count_per_day: "1日の使用量"
         memo: "メモ"
+      notification:
+        next_notification_day: "通知日"
     errors:
       models:
         item:
@@ -24,10 +26,9 @@ ja:
         notification:
           attributes:
             next_notification_day:
-              past_date: "通知日は今日以降の日付を入力してください"
-              too_far: "通知日は１年以内の日付を入力してください"
-      messages:
-        blank: "通知日を入力してください"
+              blank_field: "を入力してください"
+              past_date: "は今日以降の日付を入力してください"
+              too_far: "は１年以内の日付を入力してください"
   categories:
     shampoo: "シャンプー"
     body_soap: "ボディソープ"
