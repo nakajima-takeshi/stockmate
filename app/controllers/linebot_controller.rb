@@ -18,4 +18,8 @@ class LinebotController < ApplicationController
             end
         end
     end
+
+    def push_message
+        Notification.send_notifications
+    end
 end

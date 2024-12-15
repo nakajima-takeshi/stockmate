@@ -25,4 +25,30 @@ class Notification < ApplicationRecord
       errors.add(:next_notification_day, :too_far)
     end
   end
+
+  def self.date_of_notification
+    where(next_notification_day: Date.today)
+  end
+
+  def create_notification_message
+    message = "#{item.name}の残量が少なくなっています\n"
+    message += " メモ: #{item.memo}\n" if item.memo.present?
+    message += "https://stockmate-a7c103b7b0ba.herokuapp.com/\n"
+    message
+  end
+
+  def self.send_notifications
+    notifications = Notification.date_of_notification
+    notifications.each do |notification|
+    message = notification.create_notification_message
+      begin
+        client.push_message(notification.item.user.line_user_id, {
+          type: 'text',
+          text: message
+        })
+      rescue => error
+        Rails.logger.error("LINE通知送信エラー: #{error.message}")
+      end
+    end
+  end
 end
