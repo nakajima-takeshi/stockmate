@@ -45,4 +45,12 @@ class Item < ApplicationRecord
     def calculate_interval(next_notification_day)
         (next_notification_day - Date.today).to_i
     end
+
+    def create_notification_message
+        message = "#{self.name}の残量が少なくなっています\n"
+        message += " メモ: #{self.memo}\n" if self.memo.present?
+        message += "https://stockmate-a7c103b7b0ba.herokuapp.com/\n"
+        Rails.logger.debug("生成された通知メッセージ: #{message}")  
+        message
+    end
 end
