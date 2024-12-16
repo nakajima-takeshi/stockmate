@@ -1,8 +1,12 @@
-<div class="bg-green-100 py-8">
-    <div class="m-8 p-8 bg-base-100 shadow-lg">
+<div class="bg-green-100 py-8 flex items-center justify-center">
+    <div class="rounded-lg p-8 bg-base-100 shadow-lg">
         <div class="p-4">
             <div class="font-bold mt-8 text-center text-5xl text-green-800 mb-6">登録内容</div>
             <div class="flex justify-end space-x-6">
+                <%= link_to edit_notification_path(@item), class: "text-gray-500 hover:text-gray-700" do %>
+                    <i class="fas fa-clock text-3xl"></i>
+                <% end %>
+
                 <%= link_to edit_item_path(@item), class: "text-gray-500 hover:text-gray-700" do %>
                     <i class="fas fa-pen text-3xl"></i>
                 <% end %>
@@ -12,57 +16,59 @@
                 <% end %>
             </div>
 
-            <div class="mb-4">
-                <div class="bg-gray-50 p-4 rounded ">
-                <label class="block text-gray-700 font-bold mb-2 text-lg">カテゴリー</label>
-                    <div class="text-2xl font-semibold text-green-800 bg-gray-50 p-4 rounded">
-                        <%= t("categories.#{@item.category}") %>
+            <div class="grid grid-cols-3 gap-8 justify-center">
+                <div class="mb-4">
+                    <div class="bg-gray-100 p-4 rounded ">
+                    <label class="block text-gray-700 font-bold mb-2 text-lg">カテゴリー</label>
+                        <div class="text-2xl font-semibold text-green-800 p-4 rounded">
+                            <%= t("categories.#{@item.category}") %>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mb-4">
-                <div class="bg-gray-50 p-4 rounded ">
+                <div class="mb-4">
+                    <div class="bg-gray-100 p-4 rounded ">
                     <label class="block text-gray-700 font-bold mb-2 text-lg">商品名</label>
-                    <div class="text-2xl font-semibold text-green-800 bg-gray-50 p-4 rounded">
-                        <%= @item.name %>
+                        <div class="text-2xl font-semibold text-green-800 p-4 rounded">
+                            <%= @item.name %>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mb-4">
-                <div class="bg-gray-50 p-4 rounded ">
+                <div class="mb-4">
+                    <div class="bg-gray-100 p-4 rounded ">
                     <label class="block text-gray-700 font-bold mb-2 text-lg">内包量</label>
-                    <div class="text-2xl font-semibold text-green-800 bg-gray-50 p-4 rounded">
-                        <%= @item.volume %>
-                    </div>
-                    <span data-items-target="unit" id="unit-span"></span>
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <div class="bg-gray-50 p-4 rounded ">
-                    <label class="bg-gray-50 p-4 rounded block text-gray-700 font-bold mb-2">１日の使用回数</label>
-                    <div class="text-2xl font-semibold text-green-800 bg-gray-50 p-4 rounded">
-                        <%= @item.used_count_per_day %> / 日
+                        <div class="text-2xl font-semibold text-green-800 p-4 rounded">
+                            <%= @item.volume %>
+                        </div>
+                        <span data-items-target="unit" id="unit-span"></span>
                     </div>
                 </div>
-            </div>
 
-            <div class="mb-4">
-                <div class="bg-gray-50 p-4 rounded ">
-                    <label class="bg-gray-50 p-4 rounded block text-gray-700 font-bold mb-2">メモ内容</label>
-                    <div class="text-2xl font-semibold text-green-800 bg-gray-50 p-4 rounded">
-                        <%= @item.memo %>
+                <div class="mb-4">
+                    <div class="bg-gray-50 p-4 rounded ">
+                    <label class=" p-4 rounded block text-gray-700 font-bold mb-2">１日の使用回数</label>
+                        <div class="text-2xl font-semibold text-green-800 p-4 rounded">
+                            <%= @item.used_count_per_day %> / 日
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mb-4">
-                <div class="bg-gray-50 p-4 rounded ">
-                    <label class="bg-gray-50 p-4 rounded block text-gray-700 font-bold mb-2">通知予定日</label>
-                    <div class="text-2xl font-semibold text-green-800 bg-gray-50 p-4 rounded">
-                        <%= @notification.next_notification_day %>
+                <div class="mb-4">
+                    <div class="bg-gray-100 p-4 rounded ">
+                    <label class=" p-4 rounded block text-gray-700 font-bold mb-2">メモ内容</label>
+                        <div class="text-2xl font-semibold text-green-800 p-4 rounded">
+                            <%= @item.memo %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="bg-gray-100 p-4 rounded ">
+                    <label class=" p-4 rounded block text-gray-700 font-bold mb-2">通知予定日</label>
+                        <div class="text-2xl font-semibold text-green-800 p-4 rounded">
+                            <%= @notification.next_notification_day %>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -25,10 +25,10 @@ class Item < ApplicationRecord
     }
 
     def calculate_next_notification_day
-        # 一日の平均使用量
-        average_daily_usage = AVERAGE_USAGE[self.category] || 0
+        # 一回の平均使用量
+        average_usage = AVERAGE_USAGE[self.category] || 0
         # 一日の使用量
-        daily_usage = average_daily_usage * self.used_count_per_day
+        daily_usage = average_usage * self.used_count_per_day
 
         days = 0
         while true
