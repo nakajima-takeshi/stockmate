@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .dynamic-width {
+        @apply min-w-[400px] max-w-[600px] break-words;
+    }
+}

@@ -3,7 +3,7 @@ class Item < ApplicationRecord
     has_one :notification, dependent: :destroy
 
     validates :category, presence: true
-    validates :name, presence: true, length: { maximum: 255 }
+    validates :name, presence: true, length: { maximum: 30 }
     validates :volume, presence: true, numericality: { only_integer: true, other_than: 0 }
     # 毎日使わない場合、初回は１と登録してもらった後にユーザーに手動で調整してもらう
     validates :used_count_per_day, presence: true, numericality: { only_integer: true, other_than: 0 }
@@ -21,7 +21,8 @@ class Item < ApplicationRecord
         "serum" => 2.5,
         "moisturizer" => 1.5,
         "face_wash" => 1,
-        "sunscreen" => 0.9
+        "sunscreen" => 0.9,
+        "others" => 10
     }
 
     def calculate_next_notification_day

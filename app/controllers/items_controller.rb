@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       @item.notification.item_update_next_notification_day
-        redirect_to items_path(@item), notice: "登録内容を更新しました"
+        redirect_to item_path(@item), notice: "登録内容を更新しました"
     else
       render :edit, status: :unprocessable_entity # エラーメッセージ表示
     end
