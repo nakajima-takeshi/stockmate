@@ -28,11 +28,9 @@ class ItemsController < ApplicationController
         )
         redirect_to items_path, notice: "新たに日用品を登録しました"
       else
-        raise ActiveRecord::Rollback
+        render :new, status: :unprocessable_entity # エラーメッセージ表示
       end
     end
-  rescue ActiveRecord::Rollback
-    render :new, status: :unprocessable_entity # エラーメッセージ表示
   end
 
   def edit; end
