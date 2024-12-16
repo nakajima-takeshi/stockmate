@@ -16,7 +16,7 @@
                 <% end %>
             </div>
 
-            <div class="grid grid-cols-3 gap-8 justify-center">
+            <div class="grid grid-cols-2 gap-8 justify-center">
                 <div class="mb-4">
                     <div class="bg-gray-100 p-4 rounded ">
                     <label class="block text-gray-700 font-bold mb-2 text-lg">カテゴリー</label>
@@ -29,7 +29,7 @@
                 <div class="mb-4">
                     <div class="bg-gray-100 p-4 rounded ">
                     <label class="block text-gray-700 font-bold mb-2 text-lg">商品名</label>
-                        <div class="text-2xl font-semibold text-green-800 p-4 rounded">
+                        <div class="text-2xl font-semibold text-green-800 p-4 rounded dynamic-width">
                             <%= @item.name %>
                         </div>
                     </div>
@@ -46,8 +46,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <div class="bg-gray-50 p-4 rounded ">
-                    <label class=" p-4 rounded block text-gray-700 font-bold mb-2">１日の使用回数</label>
+                    <div class="bg-gray-100 p-4 rounded ">
+                    <label class="block text-gray-700 font-bold mb-2 text-lg">１日の使用回数</label>
                         <div class="text-2xl font-semibold text-green-800 p-4 rounded">
                             <%= @item.used_count_per_day %> / 日
                         </div>
@@ -56,16 +56,20 @@
 
                 <div class="mb-4">
                     <div class="bg-gray-100 p-4 rounded ">
-                    <label class=" p-4 rounded block text-gray-700 font-bold mb-2">メモ内容</label>
-                        <div class="text-2xl font-semibold text-green-800 p-4 rounded">
-                            <%= @item.memo %>
+                    <label class="block text-gray-700 font-bold mb-8 text-lg">メモ内容</label>
+                        <div class="text-2xl font-semibold text-green-800 rounded">
+                            <% if @item.memo.present? %>
+                                <%= @item.memo %>
+                            <% else %>
+                                未登録
+                            <% end %>
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-4">
                     <div class="bg-gray-100 p-4 rounded ">
-                    <label class=" p-4 rounded block text-gray-700 font-bold mb-2">通知予定日</label>
+                    <label class="block text-gray-700 font-bold text-lg">通知予定日</label>
                         <div class="text-2xl font-semibold text-green-800 p-4 rounded">
                             <%= @notification.next_notification_day %>
                         </div>
