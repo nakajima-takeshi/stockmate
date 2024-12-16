@@ -1,12 +1,19 @@
-<div class="bg-green-100 py-8 h-screen">
-    <div class="m-8 p-8 bg-base-100 shadow-lg">
-        <div class="p-4 font-bold">
-            <%= form_with model: @notification, local: true do |f| %>
-                <%= render "shared/error_messages", object: @notification %>
-                <%= f.label :next_notification_day, "次回通知日" %>
-                <%= f.date_field :next_notification_day %>
-                <%= f.submit "更新" %>
-            <% end %>
+<div class="bg-green-100 py-8 h-screen flex items-center justify-center">
+    <div class="rounded-lg w-full max-w-md p-8 bg-base-100 shadow-lg">
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-bold">次回通知日</h2>
         </div>
+        <%= form_with model: @notification, local: true do |f| %>
+            <div class="space-y-4">
+                <%= render "shared/error_messages", object: @notification %>
+                <div>
+                    <%= f.label :next_notification_day, "日付を選択", class: "block text-lg font-medium mb-2" %>
+                    <%= f.date_field :next_notification_day, class: "w-full p-3 border rounded-lg" %>
+                </div>
+                <div class="text-center">
+                    <%= f.submit "更新", class: "bg-green-800 hover:bg-green-700 text-white font-medium py-3 px-12 rounded text-center" %>
+                </div>
+            </div>
+        <% end %>
     </div>
 </div>
