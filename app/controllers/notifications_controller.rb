@@ -1,6 +1,8 @@
 class NotificationsController < ApplicationController
-    before_action :authenticate_user!
+    include Frameable
 
+    before_action :authenticate_user!
+    before_action :ensure_turbo_frame_response, only: %w[edit]
     before_action :set_notification, only: [ :edit, :update ]
 
     def edit; end
