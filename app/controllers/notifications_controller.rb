@@ -12,10 +12,9 @@ class NotificationsController < ApplicationController
                 format.turbo_stream do
                     render turbo_stream: turbo_stream.update( 
                         "notification_#{@notification.id}", 
-                        partial: "modal", 
+                        partial: "notifications/modal", 
                         locals: { notification: @notification }
                         )
-                        binding.pry
                 end
                 format.html { redirect_to items_path, notice: "通知予定日を更新しました" }
             end
@@ -24,7 +23,7 @@ class NotificationsController < ApplicationController
                 format.turbo_stream do
                     render turbo_stream: turbo_stream.replace( 
                             "modal", 
-                            partial: "notification/modal", 
+                            partial: "notifications/modal", 
                             locals: { notification: @notification }
                         ), status: :unprocessable_entity
                 end

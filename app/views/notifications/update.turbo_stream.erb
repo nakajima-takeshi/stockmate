@@ -4,7 +4,7 @@
     </template>
 </turbo-stream>
 
-<turbo-stream action="update" target="notification-info">
+<turbo-stream action="update" target="notification-#{@notification.id}">
     <template>
         <%= @notification.next_notification_day %>
     </template>
