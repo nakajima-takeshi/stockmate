@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import ItemsController from "./items_controller"
 application.register("items", ItemsController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)

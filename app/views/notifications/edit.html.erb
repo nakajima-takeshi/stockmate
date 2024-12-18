@@ -1,19 +1,26 @@
-<div class="bg-green-100 py-8 flex items-center justify-center">
-    <div class="rounded-lg w-full h-full max-w-md p-8 bg-base-100 shadow-lg">
-        <div class="text-center mb-6">
-            <h2 class="text-2xl font-bold">次回通知日</h2>
-        </div>
-        <%= form_with model: @notification, local: true do |form| %>
-            <div class="space-y-4">
-                <%= render "shared/error_messages", object: @notification %>
-                <div>
-                    <%= form.label :next_notification_day, "日付を選択", class: "block text-lg font-medium mb-2" %>
-                    <%= form.date_field :next_notification_day, class: "w-full p-3 border rounded-lg" %>
-                </div>
-                <div class="text-center">
-                    <%= form.submit "更新", class: "bg-green-800 hover:bg-green-700 text-white font-medium py-3 px-12 rounded text-center" %>
+<turbo-frame id="modal">
+    <div data-controller="modal" data-action="turbo:submit-end->modal#hideOnSubmit keydown.esc->modal#hide" role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
+        <%= button_to nil, nil, type: :button, method: :get, form: { data: {action: "modal#hide"} }, class: "fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30" %>
+        <div class="relative z-20 w-full max-w-2xl max-h-screen overflow-y-auto bg-white shadow-lg rounded-md">
+            <div class="py-8 flex items-center justify-center">
+                <div class="rounded-lg w-full h-full max-w-md p-8 bg-base-100 shadow-lg">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold">次回通知日</h2>
+                    </div>
+                    <%= form_with model: @notification, local: true do |form| %>
+                        <div class="space-y-4">
+                            <%= render "shared/error_messages", object: @notification %>
+                            <div>
+                                <%= form.label :next_notification_day, "日付を選択", class: "block text-lg font-medium mb-2" %>
+                                <%= form.date_field :next_notification_day, class: "w-full p-3 border rounded-lg" %>
+                            </div>
+                            <div class="text-center">
+                                <%= form.submit "更新", class: "bg-green-800 hover:bg-green-700 text-white font-medium py-3 px-12 rounded text-center" %>
+                            </div>
+                        </div>
+                    <% end %>
                 </div>
             </div>
-        <% end %>
+        </div>
     </div>
-</div>
+</turbo-frame>
