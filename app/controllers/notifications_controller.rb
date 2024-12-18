@@ -8,9 +8,28 @@ class NotificationsController < ApplicationController
     def update
         if @notification.update(notification_params)
             @notification.notification_update_next_notification_day(@notification.next_notification_day)
-            redirect_to items_path, notice: "通知日を更新しました"
+            respond_to do |format|
+                format.turbo_stream do
+                    render turbo_stream: turbo_stream.update( 
+                        "notification_#{@notification.id}", 
+                        partial: "modal", 
+                        locals: { notification: @notification }
+                        )
+                        binding.pry
+                end
+                format.html { redirect_to items_path, notice: "通知予定日を更新しました" }
+            end
         else
-            render :edit, status: :unprocessable_entity
+            respond_to do |format|
+                format.turbo_stream do
+                    render turbo_stream: turbo_stream.replace( 
+                            "modal", 
+                            partial: "notification/modal", 
+                            locals: { notification: @notification }
+                        ), status: :unprocessable_entity
+                end
+                format.html { render :edit, status: :unprocessable_entity }
+            end
         end
     end
 

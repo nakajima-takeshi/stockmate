@@ -1,0 +1,11 @@
+<turbo-stream action="update" target="modal">
+    <template>
+        <%= render partial: "notifications/modal", locals: { notification: @notification } %>
+    </template>
+</turbo-stream>
+
+<turbo-stream action="update" target="notification-info">
+    <template>
+        <%= @notification.next_notification_day %>
+    </template>
+</turbo-stream>

@@ -19,7 +19,7 @@
               </div>
               <div class="flex flex-auto justify-center items-center mt-1">
                 <p class="text-3xl">次回の通知日 : </p>
-                <p class="text-3xl font-bold text-red-600"> <%= item.notification.next_notification_day %></p>
+                <p id="notification_#{@notification.id}" class="text-3xl font-bold text-red-600"><%= item.notification.next_notification_day %></p>
               </div>
               <div class="absolute top-2 right-2 flex space-x-2">
                 <div class="flex justify-end space-x-6">
