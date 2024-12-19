@@ -14,7 +14,7 @@ class NotificationsController < ApplicationController
                 format.turbo_stream do
                     render turbo_stream: turbo_stream.update( 
                         "notification_#{@notification.id}", 
-                        partial: "notifications/modal", 
+                        partial: "notifications/modal",
                         locals: { notification: @notification }
                         )
                 end

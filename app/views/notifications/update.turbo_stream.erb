@@ -1,11 +1,12 @@
-<turbo-stream action="update" target="modal">
-    <template>
-        <%= render partial: "notifications/modal", locals: { notification: @notification } %>
-    </template>
-</turbo-stream>
-
-<turbo-stream action="update" target="notification-#{@notification.id}">
-    <template>
-        <%= @notification.next_notification_day %>
-    </template>
-</turbo-stream>
+<% if @notification.errors.present? %>
+  <%= turbo_stream.replace "modal" do %>
+    <%= render partial: "notifications/modal", locals: { notification: @notification } %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update "notification-#{@notification.id}" do %>
+    <%= @notification.next_notification_day %>
+  <% end %>
+  <%= turbo_stream.update "modal" do %>
+    <%= render partial: "notifications/modal", locals: { notification: @notification } %>
+  <% end %>
+<% end %>

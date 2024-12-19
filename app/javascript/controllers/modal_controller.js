@@ -1,6 +1,4 @@
 import { Controller } from "@hotwired/stimulus"
-
-// Connects to data-controller="modal"
 export default class extends Controller {
   // コントローラー接続で呼び出される
   connect() {
@@ -17,7 +15,7 @@ export default class extends Controller {
 
   //フォーム送信が終わるとモーダルを非表示
   hideOnSubmit(event) {
-    if (event.detail.success) {
+    if (event && event.detail.success) {
       this.hide();
     }
   }
