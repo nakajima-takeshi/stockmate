@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
+  static targets = ["modal"]
   // コントローラー接続で呼び出される
   connect() {
     this.element.focus();
@@ -18,6 +19,11 @@ export default class extends Controller {
     if (event && event.detail.success) {
       this.hide();
     }
+  }
+
+// モーダルをDOMから削除
+  hide() {
+    this.element.remove(); 
   }
 
   //モーダルが閉じられると発火

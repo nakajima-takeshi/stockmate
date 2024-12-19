@@ -7,7 +7,7 @@
                     <div class="text-center mb-6">
                         <h2 class="text-2xl font-bold">次回通知日</h2>
                     </div>
-                    <%= form_with model: @notification, local: true do |form| %>
+                    <%= form_with model: @notification, data: { turbo_frame: "modal" } do |form| %>
                         <div class="space-y-4">
                             <%= render "shared/error_messages", object: @notification %>
                             <div>

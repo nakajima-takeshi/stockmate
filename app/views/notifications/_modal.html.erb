@@ -1,4 +1,7 @@
-<div class="flex flex-auto justify-center items-center mt-1">
-    <p class="text-3xl">次回の通知日 : </p>
-    <p id=<%= "notification_#{notification.id}" %> class="text-3xl font-bold text-red-600"><%= notification.next_notification_day %></p>
-</div>
+<turbo-frame id="modal">
+    <div data-controller="modal" data-action="turbo:submit-end->modal#hideOnSubmit">
+        <div class="flex flex-auto justify-center items-center mt-1">
+            <p id=<%= "notification_#{notification.id}" %> class="text-3xl font-bold text-red-600"><%= notification.next_notification_day %></p>
+        </div>
+    </div>
+</turbo-frame>

@@ -22,13 +22,6 @@ class NotificationsController < ApplicationController
             end
         else
             respond_to do |format|
-                format.turbo_stream do
-                    render turbo_stream: turbo_stream.replace( 
-                            "modal", 
-                            partial: "notifications/modal", 
-                            locals: { notification: @notification }
-                        ), status: :unprocessable_entity
-                end
                 format.html { render :edit, status: :unprocessable_entity }
             end
         end
