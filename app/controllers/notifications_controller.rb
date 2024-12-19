@@ -1,6 +1,8 @@
 class NotificationsController < ApplicationController
-    before_action :authenticate_user!
+    include Frameable
 
+    before_action :authenticate_user!
+    before_action :ensure_turbo_frame_response, only: %w[edit]
     before_action :set_notification, only: [ :edit, :update ]
 
     def edit; end
@@ -8,9 +10,20 @@ class NotificationsController < ApplicationController
     def update
         if @notification.update(notification_params)
             @notification.notification_update_next_notification_day(@notification.next_notification_day)
-            redirect_to items_path, notice: "通知日を更新しました"
+            respond_to do |format|
+                format.turbo_stream do
+                    render turbo_stream: turbo_stream.update(
+                        "notification_#{@notification.id}",
+                        partial: "notifications/modal",
+                        locals: { notification: @notification }
+                        )
+                end
+                format.html { redirect_to items_path, notice: "通知予定日を更新しました" }
+            end
         else
-            render :edit, status: :unprocessable_entity
+            respond_to do |format|
+                format.html { render :edit, status: :unprocessable_entity }
+            end
         end
     end
 

@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
       if @item.save
         next_notification_day = @item.calculate_next_notification_day
         notification_interval = @item.calculate_interval(next_notification_day)
-      # オブジェクトを初期化
+        # オブジェクトを初期化
         @item.create_notification(
           next_notification_day: next_notification_day,
           notification_interval: notification_interval

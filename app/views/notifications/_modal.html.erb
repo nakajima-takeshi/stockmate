@@ -1,0 +1,7 @@
+<turbo-frame id="modal">
+    <div data-controller="modal" data-action="turbo:submit-end->modal#hideOnSubmit">
+        <div>
+            <p id=<%= "notification_#{notification.id}" %>><%= notification.next_notification_day %></p>
+        </div>
+    </div>
+</turbo-frame>

@@ -1,5 +1,5 @@
 class LinebotController < ApplicationController
-    require 'line/bot'
+    require "line/bot"
 
     skip_before_action :verify_authenticity_token
 
@@ -23,7 +23,7 @@ class LinebotController < ApplicationController
 
     def push_message(user_id, message)
         client.push_message(user_id, {
-            type: 'text',
+            type: "text",
             text: message
         })
     end
