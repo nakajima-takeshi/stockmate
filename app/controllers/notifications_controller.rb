@@ -12,8 +12,8 @@ class NotificationsController < ApplicationController
             @notification.notification_update_next_notification_day(@notification.next_notification_day)
             respond_to do |format|
                 format.turbo_stream do
-                    render turbo_stream: turbo_stream.update( 
-                        "notification_#{@notification.id}", 
+                    render turbo_stream: turbo_stream.update(
+                        "notification_#{@notification.id}",
                         partial: "notifications/modal",
                         locals: { notification: @notification }
                         )
