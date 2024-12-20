@@ -8,6 +8,10 @@ class Notification < ApplicationRecord
     self.update(next_notification_day: item.calculate_next_notification_day)
   end
 
+  def self.save_last_notification_day(notification)
+    notification.update(last_notification_day: Date.today)
+  end
+
   def notification_update_next_notification_day(new_notification_day)
     interval = (new_notification_day - Date.today).to_i
     self.update(next_notification_day: new_notification_day, notification_interval: interval)
@@ -17,15 +21,13 @@ class Notification < ApplicationRecord
     notifications = Notification.date_of_notification
     notifications.each do |notification|
       user = notification.item&.user
-      Rails.logger.debug("Notification ID: #{notification.id}, User: #{user.inspect}, UID: #{user&.uid}")
       line_user_id = user&.uid
       if line_user_id.present?
-        Rails.logger.debug("メッセージ作成開始: Notification ID #{notification.id}")
         # インスタンスメソッドとして呼び出す
         message = notification.item.create_notification_message
-        Rails.logger.debug("生成された通知メッセージ: #{message}")
         begin
           LinebotController.new.push_message(line_user_id, message)
+          save_last_notification_day(notification)
         rescue => error
           Rails.logger.error("LINE通知送信エラー: #{error.message}")
         end
