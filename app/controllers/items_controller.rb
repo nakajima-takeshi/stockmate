@@ -25,8 +25,8 @@ class ItemsController < ApplicationController
         @item.create_notification(
           next_notification_day: next_notification_day,
           notification_interval: notification_interval
-        )
-        redirect_to items_path, notice: "新たに日用品を登録しました"
+          )
+          redirect_to items_path, notice: "新たに日用品を登録しました"
       else
         render :new, status: :unprocessable_entity # エラーメッセージ表示
       end
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       @item.notification.item_update_next_notification_day
-        redirect_to item_path(@item), notice: "登録内容を更新しました"
+        redirect_to items_path, notice: "登録内容を更新しました"
     else
       render :edit, status: :unprocessable_entity # エラーメッセージ表示
     end
