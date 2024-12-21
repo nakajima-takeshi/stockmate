@@ -26,21 +26,26 @@ class Item < ApplicationRecord
     }
 
     def calculate_next_notification_day
-        # 一回の平均使用量
-        average_usage = AVERAGE_USAGE[self.category] || 0
-        # 一日の使用量
-        daily_usage = average_usage * self.used_count_per_day
+        if self.category == "others"
+            Date.today + 14.days
+        else
+            # 一回の平均使用量
+            average_usage = AVERAGE_USAGE[self.category] || 0
+            # 一日の使用量
+            daily_usage = average_usage * self.used_count_per_day
 
-        days = 0
-        while true
-            reminding_volume = self.volume - (daily_usage * days)
-            if reminding_volume <= (self.volume * 1.0 / 3)
-                break
-            else
-                days += 1
+            days = 0
+            max_days = 365
+            while days < max_days
+                reminding_volume = self.volume - (daily_usage * days)
+                if reminding_volume <= (self.volume * 1.0 / 3)
+                    break
+                else
+                    days += 1
+                end
             end
+            Date.today + days
         end
-        Date.today + days
     end
 
     def calculate_interval(next_notification_day)
