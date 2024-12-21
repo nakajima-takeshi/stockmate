@@ -6,26 +6,26 @@
       <% if @items.present? %>
       <ul class="space-y-5">
         <% @items.each do |item| %>
-          <div class="flex bg-base-300 shadow-lg rounded-lg">
+          <div class="flex bg-base-300 shadow-lg rounded-lg flex justify-center items-center">
             <a href="<%= item_path(item) %>", class="flex-shrink-0 hidden md:block hover:shadow-xl transition-shadow">
               <img class="rounded-lg w-56 border-4 border-base-300" src="https://picsum.photos/300/180" alt="<%= item.name %>">
             </a>
             <div class="ml-6 flex-grow relative flex flex-col justify-center items-center h-32">
-              <div class="flex justify-center items-center mb-1">
+              <div class="mb-1">
                 <p class="text-2xl">カテゴリー : <%= t("categories.#{item.category}") %></p>
               </div>
 
-              <div class="flex justify-center items-center my-2">
+              <div class="my-2">
                 <p class="text-lg">商品名 : <%= item.name %></p>
               </div>
 
-              <div class="flex flex-auto justify-center items-center mt-1">
+              <div class="flex flex-auto mt-1">
                 <p class="text-3xl">次回の通知日 : </p>
                 <p id=<%= "notification_#{item.notification.id}" %> class="text-3xl font-bold text-red-600"><%= item.notification.next_notification_day %></p>
               </div>
 
-              <div class="absolute top-2 right-2 flex space-x-2">
-                <div class="flex justify-end space-x-6">
+              <div class="absolute top-2 right-2">
+                <div class="space-x-5">
                   <%= link_to edit_notification_path(item), data: {turbo_frame: "modal"}, class: "text-gray-500 hover:text-gray-700" do %>
                     <i class="fas fa-clock text-3xl"></i>
                   <% end %>

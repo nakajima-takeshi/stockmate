@@ -36,7 +36,7 @@ class Notification < ApplicationRecord
           Rails.logger.error("LINE通知送信エラー: #{error.message}")
         end
       else
-        Rails.logger.error("LINE通知送信エラー: UIDが見つかりません 
+        Rails.logger.error("LINE通知送信エラー: UIDが見つかりません
                           (Notification ID: #{notification.id})")
       end
     end
