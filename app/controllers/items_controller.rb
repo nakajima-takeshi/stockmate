@@ -36,8 +36,13 @@ class ItemsController < ApplicationController
   def edit; end
 
   def update
+    registered_volume = @item.volume
+    registered_used_count_per_day = @item.used_count_per_day
+
     if @item.update(item_params)
-      @item.notification.item_update_next_notification_day
+      if registered_volume != @item.volume || registered_used_count_per_day != @item.used_count_per_day
+        @item.notification.item_update_next_notification_day
+      end
         redirect_to items_path, notice: "登録内容を更新しました"
     else
       render :edit, status: :unprocessable_entity # エラーメッセージ表示

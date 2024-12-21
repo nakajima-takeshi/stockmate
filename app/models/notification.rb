@@ -5,7 +5,10 @@ class Notification < ApplicationRecord
 
   # 通知日の更新
   def item_update_next_notification_day
-    self.update(next_notification_day: item.calculate_next_notification_day)
+    new_notification_day = item.calculate_next_notification_day
+    interval = (new_notification_day - Date.today).to_i
+    self.update(next_notification_day: item.calculate_next_notification_day,
+                notification_interval: interval)
   end
 
   def self.save_last_notification_day(notification)
@@ -14,7 +17,8 @@ class Notification < ApplicationRecord
 
   def notification_update_next_notification_day(new_notification_day)
     interval = (new_notification_day - Date.today).to_i
-    self.update(next_notification_day: new_notification_day, notification_interval: interval)
+    self.update(next_notification_day: new_notification_day,
+                notification_interval: interval)
   end
 
   def self.send_notifications
@@ -32,7 +36,8 @@ class Notification < ApplicationRecord
           Rails.logger.error("LINE通知送信エラー: #{error.message}")
         end
       else
-        Rails.logger.error("LINE通知送信エラー: UIDが見つかりません (Notification ID: #{notification.id})")
+        Rails.logger.error("LINE通知送信エラー: UIDが見つかりません 
+                          (Notification ID: #{notification.id})")
       end
     end
   end

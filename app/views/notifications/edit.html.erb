@@ -7,11 +7,16 @@
                     <div class="text-center mb-6">
                         <h2 class="text-2xl font-bold">次回通知日</h2>
                     </div>
+                    <div class="flex flex-auto justify-center items-center block text-lg font-medium gap-2">
+                        <p>前回の登録からの通知日間隔は</p>
+                        <p class="font-bold text-red-600"> <%= @notification.notification_interval %></p> 
+                        <p> 日です</p>
+                    </div>
                     <%= form_with model: @notification, data: { turbo_frame: "modal" } do |form| %>
                         <div class="space-y-4">
                             <%= render "shared/error_messages", object: @notification %>
                             <div>
-                                <%= form.label :next_notification_day, "日付を選択", class: "block text-lg font-medium mb-2" %>
+                                <%= form.label :next_notification_day, "日付を選択", class: "block flex justify-center text-lg font-medium mb-2" %>
                                 <%= form.date_field :next_notification_day, class: "w-full p-3 border rounded-lg" %>
                             </div>
                             <div class="text-center">
