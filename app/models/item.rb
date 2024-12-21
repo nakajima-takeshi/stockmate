@@ -14,14 +14,14 @@ class Item < ApplicationRecord
         "shampoo" => 6,
         "body_soap" => 6,
         "laundry_detergent_powder" => 17,
-        "laundry_detergent_liquid" => 8,
+        "laundry_detergent_liquid" => 22,
         "fabric_softener" => 20,
         "dishwashing_detergent" => 4,
         "lotion" => 5,
         "serum" => 2.5,
         "moisturizer" => 1.5,
         "face_wash" => 1,
-        "sunscreen" => 0.9,
+        "sunscreen" => 2,
         "others" => 10
     }
 
