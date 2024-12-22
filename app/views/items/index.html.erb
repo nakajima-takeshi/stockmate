@@ -3,7 +3,7 @@
       <div class="font-bold mt-8 text-center text-5xl text-green-800 mb-8">登録一覧</div>
     <%= render 'shared/flash_message' %>
     <div class="font-bold text-xl">
-      <%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>はこちら
+      <div class="m-4"><%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>はこちら</div>
       <% if @items.present? %>
       <ul class="space-y-5 mt-4">
       <% @items.each do |item| %>
