@@ -7,9 +7,9 @@
                     <div class="text-center mb-6">
                         <h2 class="text-2xl font-bold">次回通知日</h2>
                     </div>
-                    <div class="flex flex-auto justify-center items-center block text-lg font-medium gap-2">
+                    <div class="flex flex-auto justify-center items-baseline block text-lg font-medium gap-2">
                         <p>前回の登録からの通知日間隔は</p>
-                        <p class="font-bold text-2xl text-red-600"> <%= @notification.notification_interval %></p> 
+                        <p class="font-bold text-3xl text-red-600"> <%= @notification.notification_interval %></p> 
                         <p> 日です</p>
                     </div>
                     <%= form_with model: @notification, data: { turbo_frame: "modal" } do |form| %>
