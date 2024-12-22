@@ -8,11 +8,11 @@ export default class extends Controller {
 
   // モーダルを非表示
   hide(event) {
-    event.preventDefault();
-    //DOMからモーダルを削除
-    if this.hide() {
-      this.element.remove();
+    if (event) {
+      event.preventDefault();
     }
+    //DOMからモーダルを削除
+    this.element.remove();
   }
 
   //フォーム送信が終わるとモーダルを非表示
@@ -21,12 +21,14 @@ export default class extends Controller {
       this.hide();
     }
   }
-
   //モーダルが閉じられると発火
   disconnect() {
     if (this.element) {
-      //モーダルが閉じられたときにTurboフレームのsrc属性をnullに設定
-      this.#modalTurboFrame.src = null;
+      const frame = this.#modalTurboFrame;
+      if (frame) {
+        frame.src = null;
+        this.event?.preventDefault();
+      }
     }
   }
 
