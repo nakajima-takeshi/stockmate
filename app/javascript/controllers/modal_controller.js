@@ -9,9 +9,10 @@ export default class extends Controller {
   // モーダルを非表示
   hide(event) {
     event.preventDefault();
-
     //DOMからモーダルを削除
-    this.element.remove();
+    if this.hide() {
+      this.element.remove();
+    }
   }
 
   //フォーム送信が終わるとモーダルを非表示
@@ -19,11 +20,6 @@ export default class extends Controller {
     if (event && event.detail.success) {
       this.hide();
     }
-  }
-
-// モーダルをDOMから削除
-  hide() {
-    this.element.remove(); 
   }
 
   //モーダルが閉じられると発火
