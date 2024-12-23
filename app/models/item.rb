@@ -54,8 +54,7 @@ class Item < ApplicationRecord
 
     def create_notification_message
         message = "#{self.name}の在庫補充をしてください\n"
-        message += "メモ書きがあります\n"
-        message += "メモ内容 : #{self.memo}\n" if self.memo.present?
+        message += "メモ書きがあります。メモ内容 : #{self.memo}\n" if self.memo.present?
         message += "https://stockmate.dev/\n"
         message
     end
