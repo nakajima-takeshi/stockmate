@@ -87,6 +87,7 @@ ___[ 通知タイミング(何日後か) = ( 内包量 - 1日の推定消費量 
 ## 懸念点と対策
 - これらの消費量、特に化粧品は個人差が大きく正確に計算できない可能性が高いため、「使い方」などにそれらの注意事項を明記します。
 - 計算結果の1回目の精度に不安があります。ユーザーが想定より多く消費している場合、通知前に在庫を切らしてしまうことが考えられます。
+
 **対策**
   - 設定から10日が経過するごとに「現在の消耗はどうでしょうか？」などと気に掛ける通知を送ることで、1回目の精度不安からのユーザーが気づかないうちに在庫切れという事態を防ぎます。
   - 登録した日用品の編集ページ内から、自身で通知日時を設定変更できるようにします。通知結果が遅いと感じたユーザーは、いつでも自分で調整することが可能です。（本リリース後、カレンダーからも変更が可能）
@@ -94,14 +95,14 @@ ___[ 通知タイミング(何日後か) = ( 内包量 - 1日の推定消費量 
 ※これ以上に極端に外れるパターンだと、ユーザー自身で通知タイミングを編集画面から設定してもらうことになると思います。
 
 ## 使用技術
-- JavaScript/ Hotwire/ TailwindCSS/ DaisyUI
+- JavaScript/Hotwire/TailwindCSS/DaisyUI
 - Ruby on Rails7.1.4.2
-- Docker/ docker-compose
+- Docker/docker-compose
 - GitHub Actions
 - devise
 - MySQL
-- Heroku
-- API:LINEログイン/ LINEMessaging API
+- Heroku/Cloudflare
+- API:LINEログイン/LINEMessaging API
 
 ### 画面遷移図
 Figma: https://www.figma.com/design/2VwD5fdGWkb8wJjEbBMAnv/%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C%E3%82%A2%E3%83%97%E3%83%AA%E3%80%80%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E8%A8%AD%E5%AE%9A?node-id=0-1&node-type=canvas&t=e5a8zFrOt7y4jZOS-0
