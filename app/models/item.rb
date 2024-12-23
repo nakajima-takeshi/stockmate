@@ -53,9 +53,10 @@ class Item < ApplicationRecord
     end
 
     def create_notification_message
-        message = "#{self.name}の残量が少なくなっています\n"
-        message += " メモ: #{self.memo}\n" if self.memo.present?
-        message += "https://stockmate-a7c103b7b0ba.herokuapp.com/\n"
+        message = "#{self.name}の在庫補充をしてください\n"
+        message += "メモ書きがあります\n"
+        message += "メモ内容 : #{self.memo}\n" if self.memo.present?
+        message += "https://stockmate.dev/\n"
         message
     end
 end
