@@ -3,7 +3,6 @@ class Notification < ApplicationRecord
 
   validate :valid_update_next_notification_day
 
-  # 通知日の更新
   def item_update_next_notification_day
     new_notification_day = item.calculate_next_notification_day
     interval = (new_notification_day - Date.today).to_i
@@ -27,7 +26,6 @@ class Notification < ApplicationRecord
       user = notification.item&.user
       line_user_id = user&.uid
       if line_user_id.present?
-        # インスタンスメソッドとして呼び出す
         message = notification.item.create_notification_message
         begin
           LinebotController.new.push_message(line_user_id, message)
@@ -44,7 +42,6 @@ class Notification < ApplicationRecord
 
   private
 
-  # カスタムバリデーション
   def valid_update_next_notification_day
     if next_notification_day.blank?
       errors.add(:next_notification_day, :blank_field)

@@ -1,6 +1,3 @@
-<%= turbo_stream.update "notification-#{@notification.id}" do %>
+<%= turbo_stream.update "notification_#{@notification.id}" do %>
     <%= item.notification.next_notification_day %>
-    <%= turbo_stream.update "modal" do %>
-        <%= render partial: "notifications/notification", locals: { notification: @notification } %>
-    <% end %>
 <% end %>

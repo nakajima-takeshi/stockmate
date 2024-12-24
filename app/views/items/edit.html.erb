@@ -8,7 +8,6 @@
                 <div class="mb-4 bg-gray-100 p-4 rounded">
                     <%= form.label :category, 'カテゴリー', class: 'font-bold' %>
                     <%= form.select :category, [
-                    ['選択してください', ''], 
                     ['シャンプー', 'shampoo'], 
                     ['ボディソープ', 'body_soap'], 
                     ['洗濯用洗剤(粉)', 'laundry_detergent_powder'], 
@@ -21,7 +20,7 @@
                     ['洗顔料', 'face_wash'], 
                     ['日焼け止め', 'sunscreen'], 
                     ['その他', 'others']], 
-                    {}, { 
+                    { include_blank: '選択してください' }, { 
                     id: 'category-select', 
                     data: { items_target: "categorySelect" }, 
                     class: "block w-full px-4 py-2 border border-gray-300 rounded shadow" } %>

@@ -5,11 +5,9 @@ class Item < ApplicationRecord
     validates :category, presence: true
     validates :name, presence: true, length: { maximum: 30 }
     validates :volume, presence: true, numericality: { only_integer: true, other_than: 0 }
-    # 毎日使わない場合、初回は１と登録してもらった後にユーザーに手動で調整してもらう
     validates :used_count_per_day, presence: true, numericality: { only_integer: true, other_than: 0 }
     validates :memo, length: { maximum: 65_535 }, allow_nil: true
 
-    # 一回の平均使用量
     AVERAGE_USAGE = {
         "shampoo" => 6,
         "body_soap" => 6,
@@ -29,9 +27,7 @@ class Item < ApplicationRecord
         if self.category == "others"
             Date.today + 14.days
         else
-            # 一回の平均使用量
             average_usage = AVERAGE_USAGE[self.category] || 0
-            # 一日の使用量
             daily_usage = average_usage * self.used_count_per_day
 
             days = 0

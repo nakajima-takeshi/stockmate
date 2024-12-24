@@ -1,8 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Stimulusのコントローラーを定義　Controllerクラスを拡張して、新しいクラスを作成
 export default class extends Controller {
-// Stimulusのターゲットを定義・[カテゴリの選択要素, 単位を表示する要素];
   static targets = ["categorySelect", "unit"];
 
   connect() {
