@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @notification = current_user.items.joins(:notification).find(params[:id]).notification
+    @notification = @item.notification
   end
 
   def new

@@ -23,7 +23,6 @@ export default class extends Controller {
       const frame = this.#modalTurboFrame;
       if (frame) {
         frame.src = null;
-        this.event?.preventDefault();
       }
     }
   }
