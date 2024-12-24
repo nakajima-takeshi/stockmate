@@ -19,7 +19,7 @@
               <p class="text-lg">商品名 : <%= item.name %></p>
               <div class="flex items-baseline gap-3">
                 <p class="text-xl">次回の通知日</p>
-                <p id=<%= "notification_#{item.notification.id}" %> class="text-3xl font-bold text-red-600">
+                <p id=<%= "notification_mobile_#{item.notification.id}" %> class="text-3xl font-bold text-red-600">
                   <%= item.notification.next_notification_day %>
                 </p>
               </div>
@@ -52,8 +52,8 @@
               </div>
               <div class="flex flex-auto mt-1 items-baseline gap-3">
                 <p class="text-xl">次回の通知日</p>
-                <p id=<%= "notification_#{item.notification.id}" %> class="text-3xl font-bold text-red-600">
-                  <%= item.notification.next_notification_day %>
+                <p id=<%= "notification_desktop_#{item.notification.id}" %> class="text-3xl font-bold text-red-600">
+                <%= item.notification.next_notification_day %>
                 </p>
               </div>
               <div class="absolute top-2 right-2">

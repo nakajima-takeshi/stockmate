@@ -12,11 +12,14 @@ class NotificationsController < ApplicationController
             @notification.notification_update_next_notification_day(@notification.next_notification_day)
             respond_to do |format|
                 format.turbo_stream do
-                    render turbo_stream: turbo_stream.update(
-                        "notification_#{@notification.id}",
+                    render turbo_stream: [
+                        turbo_stream.update("notification_mobile_#{@notification.id}",
                         partial: "notifications/notification",
-                        locals: { notification: @notification }
-                        )
+                        locals: { notification: @notification }), 
+                        turbo_stream.update("notification_desktop_#{@notification.id}",
+                        partial: "notifications/notification",
+                        locals: { notification: @notification })
+                    ]
                 end
                 format.html { redirect_to items_path, notice: "通知予定日を更新しました" }
             end
