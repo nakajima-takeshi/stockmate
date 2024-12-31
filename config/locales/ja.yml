@@ -5,7 +5,7 @@ ja:
         category: "カテゴリー"
         name: "名前"
         volume: "容量"
-        used_count_per_day: "1日の使用量"
+        used_count_per_weekly: "1日の使用量"
         memo: "メモ"
       notification:
         next_notification_day: "通知日"
@@ -20,7 +20,7 @@ ja:
             volume:
               blank: "を入力してください"
               not_a_number: "は数値で入力してください"
-            used_count_per_day:
+            used_count_per_weekly:
               blank: "を入力してください"
               not_a_number: "は数値で入力してください"
         notification:
