@@ -39,6 +39,7 @@ class ItemsController < ApplicationController
     registered_used_count_per_day = @item.used_count_per_day
 
     if @item.update(item_params)
+      # 既存のデータと異なるかを比較
       if registered_volume != @item.volume || registered_used_count_per_day != @item.used_count_per_day
         @item.notification.item_update_next_notification_day
       end

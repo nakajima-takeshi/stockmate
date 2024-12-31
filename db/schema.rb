@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_09_110815) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_31_101537) do
   create_table "items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
     t.integer "volume"
-    t.integer "used_count_per_day"
+    t.integer "used_count_per_weekly"
     t.text "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
