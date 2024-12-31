@@ -15,7 +15,7 @@ class NotificationsController < ApplicationController
                     render turbo_stream: [
                         turbo_stream.update("notification_mobile_#{@notification.id}",
                         partial: "notifications/notification",
-                        locals: { notification: @notification }), 
+                        locals: { notification: @notification }),
                         turbo_stream.update("notification_desktop_#{@notification.id}",
                         partial: "notifications/notification",
                         locals: { notification: @notification })
