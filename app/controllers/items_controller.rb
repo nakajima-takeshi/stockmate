@@ -36,11 +36,11 @@ class ItemsController < ApplicationController
 
   def update
     registered_volume = @item.volume
-    registered_used_count_per_day = @item.used_count_per_day
+    registered_used_count_per_weekly = @item.used_count_per_weekly
 
     if @item.update(item_params)
       # 既存のデータと異なるかを比較
-      if registered_volume != @item.volume || registered_used_count_per_day != @item.used_count_per_day
+      if registered_volume != @item.volume || registered_used_count_per_weekly != @item.used_count_per_weekly
         @item.notification.item_update_next_notification_day
       end
         redirect_to items_path, notice: "登録内容を更新しました"
@@ -65,6 +65,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:category, :name, :volume, :used_count_per_day, :memo)
+    params.require(:item).permit(:category, :name, :volume, :used_count_per_weekly, :memo)
   end
 end
