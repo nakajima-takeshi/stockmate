@@ -5,7 +5,7 @@ class Item < ApplicationRecord
     validates :category, presence: true
     validates :name, presence: true, length: { maximum: 30 }
     validates :volume, presence: true, numericality: { only_integer: true, other_than: 0 }
-    validates :used_count_per_day, presence: true, numericality: { only_integer: true, other_than: 0 }
+    validates :used_count_per_weekly, presence: true, numericality: { only_integer: true, other_than: 0 }
     validates :memo, length: { maximum: 65_535 }, allow_nil: true
 
     AVERAGE_USAGE = {
@@ -28,7 +28,7 @@ class Item < ApplicationRecord
             Date.today + 14.days
         else
             average_usage = AVERAGE_USAGE[self.category] || 0
-            daily_usage = average_usage * self.used_count_per_day
+            daily_usage = average_usage * ((self.used_count_per_weekly / 7.0).ceil(2))
 
             days = 0
             max_days = 365
