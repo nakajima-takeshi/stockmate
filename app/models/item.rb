@@ -27,7 +27,7 @@ class Item < ApplicationRecord
         if self.category == "others"
             Date.today + 14.days
         else
-            average_usage = AVERAGE_USAGE[self.category] || 0
+            average_usage = AVERAGE_USAGE[self.category]
             used_count_per_weekly = self.used_count_per_weekly.to_i
             daily_usage = average_usage * ((used_count_per_weekly / 7.0).ceil(2))
 
