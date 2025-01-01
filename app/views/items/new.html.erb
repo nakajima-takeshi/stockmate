@@ -1,4 +1,4 @@
-<div class="py-8 flex  justify-center items-center">
+<div class="container py-8 flex  justify-center items-center">
   <div class="rounded-lg w-full h-full max-w-xl p-8 bg-base-100 shadow-lg">
     <div class="p-4">
       <div class="font-bold mt-8 text-center text-5xl text-green-800 mb-6">新規登録</div>
@@ -38,7 +38,7 @@
 
         <div class="mb-4 bg-gray-100 p-4 rounded">
           <%= form.label :used_count_per_weekly, '1週間の使用回数', class: "block text-gray-700 font-bold mb-2" %>
-          <%= form.number_field :used_count_per_weekly, class: "block w-full px-4 py-2 border border-gray-300 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+          <%= form.text_field :used_count_per_weekly, class: "block w-full px-4 py-2 border border-gray-300 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
         </div>
 
         <div class="mb-4 bg-gray-100 p-4 rounded">
