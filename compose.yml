@@ -36,4 +36,4 @@ services:
 volumes:
   mysql_data:
   bundle_data:
-  node_modules: # 追記
+  node_modules:
