@@ -20,7 +20,7 @@
   </head>
 
   <body>
-  <div style="background-image: url(<%=image_path("bg.png") %>); background-size: cover; background-position: center;">
+  <div class="bg-fixed">
     <% if user_signed_in? %>
       <%= render 'shared/header' %>
     <% else %>
