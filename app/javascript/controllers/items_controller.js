@@ -15,7 +15,7 @@ export default class extends Controller {
     switch(value) {
       case "shampoo":
       case "body_soap":
-      case "fabric_softener":
+      case "fabric_softeners":
       case "dishwashing_detergent":
       case "lotion":
       case "serum":
