@@ -13,11 +13,11 @@ class Item < ApplicationRecord
         "body_soap" => 6,
         "laundry_detergent_powder" => 20,
         "laundry_detergent_liquid" => 25,
-        "fabric_softener" => 25,
+        "fabric_softeners" => 25,
         "dishwashing_detergent" => 4,
         "lotion" => 5,
         "serum" => 3,
-        "moisturizer" => 2,
+        "moisturising_cream" => 2,
         "face_wash" => 1,
         "sunscreen" => 2,
         "others" => 10
