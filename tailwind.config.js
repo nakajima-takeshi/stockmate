@@ -8,6 +8,6 @@ module.exports = {
   plugins: [require("daisyui")],
   // ダークテーマを無効化
   daisyui: {
-    themes: ['light']
+    themes: ['bumblebee']
   }
 };

@@ -8,7 +8,7 @@
       <ul class="space-y-5 mt-4">
       <% @items.each do |item| %>
         <div class="block md:hidden">
-          <div class="mx-auto rounded-lg shadow-lg border overflow-hidden bg-base-200">
+          <div class="mx-auto rounded-lg shadow-lg border overflow-hidden bg-gray-100">
             <div class="relative pb-[60%]">
               <a href="<%= item_path(item) %>" class="flex-shrink-0 hover:shadow-2xl transition-shadow">
                 <img src="https://picsum.photos/300/180" class="absolute object-cover h-full w-full rounded-lg border-4" alt="<%= item.name %>">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="hidden md:block">
-          <div class="flex bg-base-200 shadow-lg rounded-lg w-4xl">
+          <div class="flex bg-gray-100 shadow-lg rounded-lg w-4xl">
             <a href="<%= item_path(item) %>" class="flex-shrink-0 hover:shadow-2xl transition-shadow">
               <img src="https://picsum.photos/300/180" class="rounded-lg w-60 border-4 border-base-200" alt="<%= item.name %>">
             </a>
