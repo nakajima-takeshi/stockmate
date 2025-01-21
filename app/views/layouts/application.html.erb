@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="bumblebee">
   <head>
     <title><%= content_for(:title) || "Myapp" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,9 +14,10 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <!-- application.jsファイルをHTMLに読み込むためのタグ -->
+    # application.jsファイルをHTMLに読み込むためのタグ
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-    <script src="https://kit.fontawesome.com/67993d43f3.js" crossorigin="anonymous"></script> # icon awesome
+    # icon awesome kit
+    <script src="https://kit.fontawesome.com/67993d43f3.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
