@@ -18,14 +18,16 @@ class ItemsController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       @item = current_user.items.build(item_params)
-      if @item.save
-        next_notification_day = @item.calculate_next_notification_day
-        notification_interval = @item.calculate_interval(next_notification_day)
-        @item.create_notification(
-          next_notification_day: next_notification_day,
-          notification_interval: notification_interval
-          )
-          redirect_to items_path, notice: "新たに日用品を登録しました"
+      next_notification_day = @item.calculate_next_notification_day
+      notification_interval = @item.calculate_interval(next_notification_day)
+      @notification = @item.build_notification(
+        next_notification_day: next_notification_day,
+        notification_interval: notification_interval
+      )
+      if @item.valid? && @notification.valid? 
+        @item.save!
+        @notification.save!
+        redirect_to items_path, notice: "新たに日用品を登録しました"
       else
         render :new, status: :unprocessable_entity
       end
