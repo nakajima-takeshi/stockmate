@@ -2,7 +2,7 @@
     <div class="rounded-lg w-full h-full max-w-xl p-8 bg-base-100 shadow-lg">
         <div class="p-4">
             <div class="font-bold mt-8 text-center text-5xl text-green-800 mb-6">編集</div>
-            <div data-controller="items">
+            <div data-controller="items category-icon">
                 <%= form_with model: @item, local: true do |form| %>
                     <%= render "shared/error_messages", object: @item %>
                 <div class="mb-4 bg-gray-100 p-4 rounded">
@@ -22,7 +22,7 @@
                     ['その他', 'others']], 
                     { include_blank: '選択してください' }, { 
                     id: 'category-select', 
-                    data: { items_target: "categorySelect" }, 
+                    data: { items_target: "categorySelect", category_icon_target: "select" }, 
                     class: "block w-full px-4 py-2 border border-gray-300 rounded shadow" } %>
                 </div>
                 <div class="mb-4 bg-gray-100 p-4 rounded">
@@ -46,7 +46,9 @@
                     <%= form.text_area :memo, class: "block w-full px-4 py-2 border border-gray-300 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
                 </div>
                 <div class="flex justify-center mb-4">
-                    <%= form.submit '更新', class: "bg-green-800 hover:bg-green-700 text-white font-medium py-3 px-12 rounded text-center" %>
+                    <%= form.submit '更新',
+                        class: "bg-green-800 hover:bg-green-700 text-white font-medium py-3 px-12 rounded text-center",
+                        data: { action: "click->category-icon#confirmIcon"} %>
                 </div>
             <% end %>
             </div>

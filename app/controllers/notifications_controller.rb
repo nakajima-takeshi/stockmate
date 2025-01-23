@@ -34,7 +34,7 @@ class NotificationsController < ApplicationController
 
     def set_notification
         @notification = current_user.items.joins(:notification)
-                                    .find_by(notifications: {id: params[:id]})
+                                    .find_by(notifications: { id: params[:id] })
                                     .notification
         if @notification.nil?
             redirect_to items_path, alert: "通知が見つかりません"
