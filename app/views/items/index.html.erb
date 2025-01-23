@@ -1,9 +1,9 @@
 <div class="py-8">
   <div class="container m-8 p-8 bg-base-100 shadow-lg max-w-4xl mx-auto px-4">
-      <div class="font-bold mt-8 text-center text-5xl text-green-800 mb-8">登録一覧</div>
+      <div class="font-bold mt-8 text-center text-8xl text-green-800 mb-8">登録一覧</div>
     <%= render 'shared/flash_message' %>
     <div class="font-bold text-xl">
-      <div class="m-4"><%= link_to '新規作成', new_item_path, class: 'text-blue-500 hover:underline' %>はこちら</div>
+      <div class="m-4"><%= link_to '新規作成 ', new_item_path, class: 'text-blue-500 hover:underline' %>はこちら</div>
       <% if @items.present? %>
       <ul class="space-y-5 mt-4">
       <% @items.each do |item| %>
@@ -45,7 +45,7 @@
             <a href="<%= item_path(item) %>" class="flex-shrink-0 hover:shadow-2xl transition-shadow">
             <%= image_tag("icons/#{item.category}.jpg",
                 class: "rounded-lg w-60 border-4 border-base-200", 
-                alt: item.name) %>
+                  alt: item.name) %>
             </a>
             <div class="ml-6 flex-grow relative flex flex-col justify-start items-start py-4 h-32">
               <div class="mb-1">
