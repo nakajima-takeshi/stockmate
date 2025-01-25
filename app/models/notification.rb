@@ -73,7 +73,6 @@ class Notification < ApplicationRecord
   end
 
   def self.date_of_notification
-    notifications = where(next_notification_day: Date.today)
-    notifications
+    where(next_notification_day: Date.today)
   end
 end
