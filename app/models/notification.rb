@@ -44,7 +44,7 @@ class Notification < ApplicationRecord
 
   def create_notification_message
     message = "商品名【#{item.name}】の在庫補充をしてください。\n"
-    message += "カテゴリー : #{I18n.t("activerecord.attributes.item.categories.#{item.category}", default: item.category)}\n"
+    message += "カテゴリー : #{I18n.t("categories.#{item.category}", default: item.category)}\n"
     if item.memo.present?
       message += "メモ書きがあります。\n"
       message += "メモ内容 : #{item.memo}\n"
