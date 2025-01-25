@@ -21,13 +21,6 @@ class LinebotController < ApplicationController
         end
     end
 
-    def push_message(user_id, message)
-        client.push_message(user_id, {
-            type: "text",
-            text: message
-        })
-    end
-
     private
 
     def client

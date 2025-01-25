@@ -20,23 +20,40 @@ class Notification < ApplicationRecord
                 notification_interval: interval)
   end
 
-  def self.send_notifications
-    notifications = Notification.date_of_notification
-    notifications.each do |notification|
-      user = notification.item&.user
-      line_user_id = user&.uid
-      if line_user_id.present?
-        message = notification.item.create_notification_message
-        begin
-          LinebotController.new.push_message(line_user_id, message)
-          save_last_notification_day(notification)
-        rescue => error
-          Rails.logger.error("LINE通知送信エラー: #{error.message}")
+  def push_line_message
+    user = item&.user
+    line_user_id = user&.uid
+    if line_user_id.present?
+      message = item.create_notification_message
+      begin
+        client = Line::Bot::Client.new do |config|
+          config.channel_secret = ENV["LINE_BOT_CHANNEL_SECRET"]
+          config.channel_token = ENV["LINE_BOT_CHANNEL_TOKEN"]
         end
-      else
-        Rails.logger.error("LINE通知送信エラー: UIDが見つかりません
-                          (Notification ID: #{notification.id})")
+        message = {
+          type: "text",
+          text: message
+        }
+        self.save_last_notification_day(notification)
+      rescue => error
+        Rails.logger.error("LINE通知送信エラー: #{error.message}")
       end
+    else
+      Rails.logger.error("LINE通知送信エラー: UIDが見つかりません(Notification ID: #{notification.id})")
+    end
+  end
+
+  def create_notification_message
+    message = "#{item.name}の在庫補充をしてください\n"
+    message += "メモ書きがあります。メモ内容 : #{item.memo}\n" if item.memo.present?
+    message += "https://stockmate.dev/item\n"
+    message
+  end
+
+  def self.send_notifications
+    notifications = date_of_notification
+    notifications.each do |notification|
+      notification.push_line_message
     end
   end
 
