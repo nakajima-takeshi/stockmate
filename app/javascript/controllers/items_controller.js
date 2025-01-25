@@ -3,6 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["categorySelect", "unit", "select"];
 
+  // iconPathをマッピング
   iconMapping = {
     'shampoo': '/assets/icons/shampoo.jpg',
     'body_soap': '/assets/icons/body_soap.jpg',
@@ -18,6 +19,7 @@ export default class extends Controller {
     'others': '/assets/icons/others.jpg'
   }
 
+  // カテゴリー未選択の場合はエラー
   confirmIcon(event) {
     const selectedCategory = this.categorySelectTarget.value
     if (!selectedCategory) {
@@ -26,6 +28,7 @@ export default class extends Controller {
       return false
     }
 
+    // 入力されたデータからアセットパイプラインを利用して画像を選択して取得
     const hidden = document.createElement("input")
     const iconPath = this.iconMapping[selectedCategory] || this.iconMapping["others"]
     hiddenIconField.type = "hidden"
@@ -36,11 +39,13 @@ export default class extends Controller {
     return true
   }
 
+  // カテゴリー選択時に単位を変更
   connect() {
     this.updateUnit();
     this.categorySelectTarget.addEventListener('change', () => this.updateUnit());
   }
 
+  // switch文で選択したvalueを返す
   updateUnit() {
     let unit = "";
     const value = this.categorySelectTarget.value;
