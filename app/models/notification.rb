@@ -32,6 +32,8 @@ class Notification < ApplicationRecord
           type: "text",
           text: message
         }
+        response = client.push_line_message(line_user_id, message)
+        Rails.logger.info("LINE通知送信成功: #{response.body}")
         self.save_last_notification_day
       rescue => error
         Rails.logger.error("LINE通知送信エラー: #{error.message}")
