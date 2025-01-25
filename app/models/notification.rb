@@ -1,4 +1,5 @@
 class Notification < ApplicationRecord
+  include Line::ClientConcern
   belongs_to :item
 
   validate :valid_update_next_notification_day
@@ -26,10 +27,6 @@ class Notification < ApplicationRecord
     if line_user_id.present?
       message = item.create_notification_message
       begin
-        client = Line::Bot::Client.new do |config|
-          config.channel_secret = ENV["LINE_BOT_CHANNEL_SECRET"]
-          config.channel_token = ENV["LINE_BOT_CHANNEL_TOKEN"]
-        end
         message = {
           type: "text",
           text: message
