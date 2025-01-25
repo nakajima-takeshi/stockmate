@@ -5,8 +5,7 @@ class LinebotController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def callback
-
-        signature = request.env['HTTP_X_LINE_SIGNATURE']
+        signature = request.env["HTTP_X_LINE_SIGNATURE"]
 
         unless client.validate_signature(request_body, signature)
             head :bad_request
@@ -60,7 +59,7 @@ class LinebotController < ApplicationController
             item_lists = [
                 "商品名: 【#{item.name}】",
                 "カテゴリー: #{I18n.t("categories.#{item.category}", default: item.category)}",
-                "次回通知日: #{item.notification.next_notification_day}",
+                "次回通知日: #{item.notification.next_notification_day}"
             ]
 
             if item.memo.present?
@@ -69,7 +68,6 @@ class LinebotController < ApplicationController
 
             item_lists << "-----------------"
             item_lists.join("\n")
-
         end.join("\n")
     end
 end
