@@ -45,6 +45,7 @@ class Notification < ApplicationRecord
   def create_notification_message
     message = "商品名【#{item.name}】の在庫補充をしてください\n"
     if item.memo.present?
+      br
       message += "メモ内容 : #{item.memo}\n"
     end
     message
