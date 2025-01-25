@@ -25,7 +25,7 @@ class Notification < ApplicationRecord
     user = item&.user
     line_user_id = user&.uid
     if line_user_id.present?
-      message = item.create_notification_message
+      message = self.create_notification_message
       begin
         message = {
           type: "text",
