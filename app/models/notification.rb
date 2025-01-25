@@ -81,11 +81,4 @@ class Notification < ApplicationRecord
     Rails.logger.info("本日の通知対象：#{notifications.count}件")
     notifications
   end
-
-  def client
-    @client ||= Line::Bot::Client.new do |config|
-        config.channel_secret = ENV["LINE_BOT_CHANNEL_SECRET"]
-        config.channel_token = ENV["LINE_BOT_CHANNEL_TOKEN"]
-    end
-  end
 end
