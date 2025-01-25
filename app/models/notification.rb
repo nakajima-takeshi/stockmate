@@ -51,7 +51,7 @@ class Notification < ApplicationRecord
   def create_notification_message
     message = "#{item.name}の在庫補充をしてください\n"
     message += "メモ書きがあります。メモ内容 : #{item.memo}\n" if item.memo.present?
-    message += "https://stockmate.dev/item\n"
+    message += "https://stockmate.dev/\n"
     Rails.logger.info("LINE通知メッセージ: #{message}")
     message
   end
