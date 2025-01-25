@@ -11,8 +11,8 @@ class Notification < ApplicationRecord
                 notification_interval: interval)
   end
 
-  def self.save_last_notification_day(notification)
-    notification.update(last_notification_day: Date.today)
+  def save_last_notification_day
+    self.update(last_notification_day: Date.today)
   end
 
   def notification_update_next_notification_day(new_notification_day)
@@ -31,12 +31,12 @@ class Notification < ApplicationRecord
           type: "text",
           text: message
         }
-        self.save_last_notification_day(notification)
+        self.save_last_notification_day
       rescue => error
         Rails.logger.error("LINE通知送信エラー: #{error.message}")
       end
     else
-      Rails.logger.error("LINE通知送信エラー: UIDが見つかりません(Notification ID: #{notification.id})")
+      Rails.logger.error("LINE通知送信エラー: UIDが見つかりません(Notification ID: #{self.id})")
     end
   end
 
@@ -47,6 +47,7 @@ class Notification < ApplicationRecord
     message
   end
 
+  # 本日の通知対象をまとめて一括で通知する
   def self.send_notifications
     notifications = date_of_notification
     notifications.each do |notification|
