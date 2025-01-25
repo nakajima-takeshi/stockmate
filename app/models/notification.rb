@@ -1,4 +1,5 @@
 class Notification < ApplicationRecord
+  include Line::ClientConcern
   belongs_to :item
 
   validate :valid_update_next_notification_day
@@ -23,22 +24,15 @@ class Notification < ApplicationRecord
   def push_line_message
     user = item&.user
     line_user_id = user&.uid
-    Rails.logger.info("LINE通知送信: UID: #{line_user_id}")
+
     if line_user_id.present?
       message = self.create_notification_message
 
-      client = Line::Bot::Client.new do |config|
-        config.channel_secret = ENV["LINE_BOT_CHANNEL_SECRET"]
-        config.channel_token = ENV["LINE_BOT_CHANNEL_TOKEN"]
-      end
-
       begin
-        message = {
+        client.push_message(line_user_id, {
           type: "text",
           text: message
-        }
-        response = client.push_message(line_user_id, message)
-        Rails.logger.info("LINE通知送信成功: #{response.body}")
+        })
         self.save_last_notification_day
       rescue => error
         Rails.logger.error("LINE通知送信エラー: #{error.message}")
@@ -52,7 +46,6 @@ class Notification < ApplicationRecord
     message = "#{item.name}の在庫補充をしてください\n"
     message += "メモ書きがあります。メモ内容 : #{item.memo}\n" if item.memo.present?
     message += "https://stockmate.dev/\n"
-    Rails.logger.info("LINE通知メッセージ: #{message}")
     message
   end
 
@@ -78,7 +71,6 @@ class Notification < ApplicationRecord
 
   def self.date_of_notification
     notifications = where(next_notification_day: Date.today)
-    Rails.logger.info("本日の通知対象：#{notifications.count}件")
     notifications
   end
 end
