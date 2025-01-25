@@ -27,12 +27,17 @@ class Notification < ApplicationRecord
     if line_user_id.present?
       message = self.create_notification_message
 
+      client = Line::Bot::Client.new do |config|
+        config.channel_secret = ENV["LINE_BOT_CHANNEL_SECRET"]
+        config.channel_token = ENV["LINE_BOT_CHANNEL_TOKEN"]
+      end
+
       begin
         message = {
           type: "text",
           text: message
         }
-        response = client.push_line_message(line_user_id, message)
+        response = client.push_message(line_user_id, message)
         Rails.logger.info("LINE通知送信成功: #{response.body}")
         self.save_last_notification_day
       rescue => error
