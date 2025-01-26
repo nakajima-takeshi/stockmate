@@ -40,13 +40,22 @@ class LinebotController < ApplicationController
         when "登録確認"
             {
                 type: "text",
-                text: get_inventory_list
+                text: get_inventory_list(event)
             }
         end
     end
 
-    def get_inventory_list
-        items = Item.includes(:notification).all
+    def get_inventory_list(event)
+        user = User.find_by(uid: event["source"]["userId"])
+
+        if user.nil?
+            return "まずはユーザー登録をお願いします！"
+        end
+
+        items = user.items.joins(:notification)
+                          .includes(:notification)
+                          .order("notifications.next_notification_day ASC")
+
         if items.present?
             format_items_message(items)
         else
