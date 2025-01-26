@@ -1,8 +1,9 @@
 class LinebotController < ApplicationController
     include Line::ClientConcern
     require "line/bot"
-
     skip_before_action :verify_authenticity_token
+
+    MESSAGE_STEP = {}
 
     def callback
         signature = request.env["HTTP_X_LINE_SIGNATURE"]
@@ -42,9 +43,56 @@ class LinebotController < ApplicationController
                 type: "text",
                 text: get_inventory_list(event)
             }
+        when "在庫補充"
+            MESSAGE_STEP[user_id] = true
+            message = {
+                type: "text",
+                text: "登録している【商品名】を入力してください。"
+            }
+        else
+            if MESSAGE_STEP[user_id] == true
+                result = handle_message_item_name(event)
+                MESSAGE_STEP[user_id] = false
+                result
+            else
+                message = {
+                    type: "text",
+                    text: "まずはメニューから操作を選択してください。"
+                }
+            end
         end
     end
 
+    # 在庫補充
+    def handle_message_item_name(event)
+        user = User.find_by(uid: event["source"]["userId"])
+
+        if user.nil?
+            return {
+                type: "text",
+                text: "まずはユーザー登録をお願いします！"
+            }
+        end
+
+        item_name = event.message["text"]
+        item = Item.joins(:notification)
+                   .includes(:notification)
+                   .find_by(name: item_name)
+        if item.nil?
+            return {
+                type: "text",
+                text: "#{item_name}は登録されていません。\n登録一覧で確認をお願いします。"
+            }
+        end
+
+        item.notification.line_update_next_notification_day
+        {
+            type: "text",
+            text: "#{item.name}を補充しました。\n次回通知日は#{item.notification.next_notification_day}です。"
+        }
+    end
+
+    # 登録確認
     def get_inventory_list(event)
         user = User.find_by(uid: event["source"]["userId"])
 
@@ -63,6 +111,7 @@ class LinebotController < ApplicationController
         end
     end
 
+    # 登録一覧のメッセージ
     def format_items_message(items)
         items.map do |item|
             item_lists = [

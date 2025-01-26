@@ -25,27 +25,56 @@ class Item < ApplicationRecord
 
     def calculate_next_notification_day
         if self.category == "others"
-            Date.today + 14.days
-        else
-            average_usage = AVERAGE_USAGE[self.category] || 0
-            used_count_per_weekly = self.used_count_per_weekly.to_i
-            daily_usage = average_usage * ((used_count_per_weekly / 7.0).ceil(2))
-
-            days = 0
-            max_days = 365
-            while days < max_days
-                reminding_volume = self.volume - (daily_usage * days)
-                if reminding_volume <= (self.volume * 1.0 / 3)
-                    break
-                else
-                    days += 1
-                end
-            end
-            Date.today + days
+            return Date.today + 14.days
         end
+
+        daily_usage = calculate_daily_usage
+        notification_volume = (self.volume * 1.0 / 3).ceil(2)
+
+        days = 0
+        max_days = 365
+        while days < max_days
+            reminding_volume = self.volume - (daily_usage * days)
+            if reminding_volume <= notification_volume
+                break
+            else
+                days += 1
+            end
+        end
+        Date.today + days
     end
 
     def calculate_interval(next_notification_day)
         (next_notification_day - Date.today).to_i
+    end
+
+    def line_calculate_next_notification_day
+        if self.category == "others"
+            return Date.today + 14.days
+        end
+
+        daily_usage = calculate_daily_usage
+        notification_volume = (self.volume * 1.0 / 3).ceil(2)
+        total_volume = notification_volume + self.volume
+
+        days = 0
+        max_days = 365
+        while days < max_days
+            reminding_volume = total_volume - (daily_usage * days)
+            if reminding_volume <= notification_volume
+                break
+            else
+                days += 1
+            end
+        end
+        days
+    end
+
+    private
+
+    def calculate_daily_usage
+        average_usage = AVERAGE_USAGE[self.category] || 0
+        used_count_per_weekly = self.used_count_per_weekly.to_i
+        average_usage * ((used_count_per_weekly / 7.0).ceil(2))
     end
 end
