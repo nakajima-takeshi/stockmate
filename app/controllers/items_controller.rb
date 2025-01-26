@@ -4,7 +4,10 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [ :show, :edit, :update ]
 
   def index
-    @items = current_user.items.includes(:user, :notification).order(created_at: :desc)
+    @items = current_user.items
+                        .joins(:notification)
+                        .includes(:user, :notification)
+                        .order("notifications.next_notification_day ASC")
   end
 
   def show
