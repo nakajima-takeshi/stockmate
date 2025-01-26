@@ -29,7 +29,7 @@ class Item < ApplicationRecord
         end
 
         daily_usage = calculate_daily_usage
-        notification_volume = ( self.volume * 1.0 / 3 ).ceil(2)
+        notification_volume = (self.volume * 1.0 / 3).ceil(2)
 
         days = 0
         max_days = 365
@@ -54,7 +54,7 @@ class Item < ApplicationRecord
         end
 
         daily_usage = calculate_daily_usage
-        notification_volume = ( self.volume * 1.0 / 3 ).ceil(2)
+        notification_volume = (self.volume * 1.0 / 3).ceil(2)
         total_volume = notification_volume + self.volume
 
         days = 0
