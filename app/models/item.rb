@@ -29,7 +29,7 @@ class Item < ApplicationRecord
         notification_volume = self.volume / 3
         days_passed = (Date.today - self.created_at.to_date).to_i
         daily_usage = calculate_daily_usage
-        self.volume - (days_passed * daily_usage)
+        [self.volume - (days_passed * daily_usage), notification_volume].max        
     end
 
     def calculate_next_notification_day(current_volume: nil)
@@ -37,11 +37,7 @@ class Item < ApplicationRecord
             return Date.today + 14.days
         else
             daily_usage = calculate_daily_usage
-            if current_volume.nil?
-                total_volume = self.volume
-            else
-                total_volume = current_volume + self.volume
-            end
+            total_volume = current_volume.nil? ? self.volume : current_volume + self.volume
         end
 
         days = 0
