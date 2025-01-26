@@ -5,7 +5,7 @@ class Notification < ApplicationRecord
   validate :valid_update_next_notification_day
 
   def item_update_next_notification_day
-    new_notification_day = item.calculate_next_notification_day
+    new_notification_day = item.calculate_next_notification_day(current_volume: item.current_volume)
     interval = (new_notification_day - Date.today).to_i
     self.update(next_notification_day: item.calculate_next_notification_day,
                 notification_interval: interval)
