@@ -5,9 +5,15 @@ class Notification < ApplicationRecord
   validate :valid_update_next_notification_day
 
   def item_update_next_notification_day
-    new_notification_day = item.calculate_next_notification_day(current_volume: item.current_volume)
+    new_notification_day = item.calculate_next_notification_day
     interval = (new_notification_day - Date.today).to_i
-    self.update(next_notification_day: item.calculate_next_notification_day,
+    self.update(next_notification_day: new_notification_day,
+                notification_interval: interval)
+  end
+
+  def notification_update_next_notification_day(new_notification_day)
+    interval = (new_notification_day - Date.today).to_i
+    self.update(next_notification_day: new_notification_day,
                 notification_interval: interval)
   end
 
@@ -15,10 +21,13 @@ class Notification < ApplicationRecord
     self.update(last_notification_day: Date.today)
   end
 
-  def notification_update_next_notification_day(new_notification_day)
-    interval = (new_notification_day - Date.today).to_i
-    self.update(next_notification_day: new_notification_day,
-                notification_interval: interval)
+  def line_update_next_notification_day
+    interval_days = item.line_calculate_next_notification_day
+    new_notification_day = Date.today + interval_days
+
+    self.update(
+      next_notification_day: new_notification_day,
+      notification_interval: interval_days)
   end
 
   def push_line_message

@@ -75,22 +75,18 @@ class LinebotController < ApplicationController
         end
 
         item_name = event.message["text"]
-        item = Item.find_by(name: item_name)
-
+        item = Item.joins(:notification)
+                   .includes(:notification)
+                   .find_by(name: item_name)
         if item.nil?
             return {
                 type: "text",
-                text: "#{item_name}は登録されていません。"
+                text: "#{item_name}は登録されていません。\n登録一覧で確認をお願いします。"
             }
         end
 
-        current_volume = item.current_volume
-        next_notification_day = item.calculate_next_notification_day(current_volume: current_volume)
-
-        if item.update(volume: current_volume)
-            item.notification.item_update_next_notification_day
-        end
-            {
+        item.notification.line_update_next_notification_day
+        {
             type: "text",
             text: "#{item.name}を補充しました。\n次回通知日は#{item.notification.next_notification_day}です。"
         }
