@@ -23,29 +23,49 @@ class Item < ApplicationRecord
         "others" => 10
     }
 
-    def calculate_next_notification_day
-        if self.category == "others"
-            Date.today + 14.days
-        else
-            average_usage = AVERAGE_USAGE[self.category] || 0
-            used_count_per_weekly = self.used_count_per_weekly.to_i
-            daily_usage = average_usage * ((used_count_per_weekly / 7.0).ceil(2))
+    def current_volume
+        return self.volume if self.category == "others"
 
-            days = 0
-            max_days = 365
-            while days < max_days
-                reminding_volume = self.volume - (daily_usage * days)
-                if reminding_volume <= (self.volume * 1.0 / 3)
-                    break
-                else
-                    days += 1
-                end
+        notification_volume = self.volume / 3
+        days_passed = (Date.today - self.created_at.to_date).to_i
+        daily_usage = calculate_daily_usage
+        self.volume - (days_passed * daily_usage)
+    end
+
+    def calculate_next_notification_day(current_volume: nil)
+        if self.category == "others"
+            return Date.today + 14.days
+        else
+            daily_usage = calculate_daily_usage
+            if current_volume.nil?
+                total_volume = self.volume
+            else
+                total_volume = current_volume + self.volume
             end
-            Date.today + days
         end
+
+        days = 0
+        max_days = 365
+        while days < max_days
+            reminding_volume = total_volume - (daily_usage * days)
+            if reminding_volume <= (self.volume * 1.0 / 3)
+                break
+            else
+                days += 1
+            end
+        end
+        Date.today + days
     end
 
     def calculate_interval(next_notification_day)
         (next_notification_day - Date.today).to_i
+    end
+
+    private
+
+    def calculate_daily_usage
+        average_usage = AVERAGE_USAGE[self.category] || 0
+        used_count_per_weekly = self.used_count_per_weekly.to_i
+        average_usage * ((used_count_per_weekly / 7.0).ceil(2))
     end
 end
