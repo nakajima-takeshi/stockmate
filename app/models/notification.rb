@@ -24,7 +24,6 @@ class Notification < ApplicationRecord
   def line_update_next_notification_day
     interval_days = item.line_calculate_next_notification_day
     new_notification_day = Date.today + interval_days
-
     self.update(
       next_notification_day: new_notification_day,
       notification_interval: interval_days)

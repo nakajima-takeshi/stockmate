@@ -41,6 +41,7 @@ class Item < ApplicationRecord
                 days += 1
             end
         end
+        # 日付を返す
         Date.today + days
     end
 
@@ -50,7 +51,7 @@ class Item < ApplicationRecord
 
     def line_calculate_next_notification_day
         if self.category == "others"
-            return Date.today + 14.days
+            return 14
         end
 
         daily_usage = calculate_daily_usage
@@ -67,6 +68,7 @@ class Item < ApplicationRecord
                 days += 1
             end
         end
+        # 日数を返す
         days
     end
 
