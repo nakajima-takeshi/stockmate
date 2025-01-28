@@ -10,7 +10,7 @@ module ApplicationHelper
             canonical: request.original_url,
             separator: "|",
             icon: [
-                {href: image_url("favicon.ico")},
+                { href: image_url("favicon.ico") }
             ],
             og: {
                 site_name: :site,
@@ -19,7 +19,7 @@ module ApplicationHelper
                 type: "website",
                 url: request.original_url,
                 image: image_url("stockmate_top_image.png"),
-                local: "ja-JP",
+                local: "ja-JP"
             },
 
             twitter: {
