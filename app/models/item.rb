@@ -3,7 +3,7 @@ class Item < ApplicationRecord
     has_one :notification, dependent: :destroy
 
     validates :category, presence: true
-    validates :name, presence: true, uniqueness: { scope: :category }, length: { maximum: 30 }
+    validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
     validates :volume, presence: true, numericality: { only_integer: true, other_than: 0 }
     validates :used_count_per_weekly, presence: true, numericality: { only_integer: true, other_than: 0 }
     validates :memo, length: { maximum: 65_535 }, allow_nil: true
