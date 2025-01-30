@@ -5,7 +5,18 @@
     <% end %>
   </div>
   <div class="flex space-x-2 md:space-x-3">
+    <button class="bg-green-800 hover:bg-green-700 text-white rounded px-2 md:px-4 py-2 text-sm md:text-white" onclick="my_modal_2.showModal()">友達追加</button>
     <%= link_to "マイページ", items_path, class: "bg-green-800 hover:bg-green-700 text-white rounded px-2 md:px-4 py-2 text-sm md:text-white" %>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bg-green-800 hover:bg-green-700 text-white rounded px-2 md:px-4 py-2 text-sm md:text-white" %>
   </div>
+
+  <dialog id="my_modal_2" class="modal">
+  <div class="modal-box">
+    <h3 class="text-center text-lg font-bold">StockMate 友達追加QR</h3>
+    
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
 </div>
