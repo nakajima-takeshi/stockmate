@@ -5,7 +5,19 @@
     <% end %>
   </div>
   <div class="flex space-x-2 md:space-x-3">
-    <%= link_to "マイページ", items_path, class: "bg-green-800 hover:bg-green-700 text-white rounded px-2 md:px-4 py-2 text-sm md:text-white" %>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bg-green-800 hover:bg-green-700 text-white rounded px-2 md:px-4 py-2 text-sm md:text-white" %>
+    <button class="bg-gray-200 hover:bg-gray-300 text-green-800 rounded px-2 md:px-4 py-2 text-sm md:text-green-800" onclick="my_modal_2.showModal()">友達追加</button>
+    <dialog id="my_modal_2" class="modal">
+      <div class="modal-box">
+        <h3 class="text-3xl text-[#05b54c] text-center flex-auto font-bold">StockMate 友達追加QR</h3>
+        <p class="py-4 text-center">
+          <%= image_tag "stockmate_qr.png", alt: "LINE友達追加QR", class: "mx-auto" %>
+        </p>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+    <%= link_to "マイページ", items_path, class: "bg-gray-200 hover:bg-gray-300 text-green-800 rounded px-2 md:px-4 py-2 text-sm md:text-green-800" %>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bg-gray-200 hover:bg-gray-300 text-green-800 rounded px-2 md:px-4 py-2 text-sm md:text-green-800" %>
   </div>
 </div>
