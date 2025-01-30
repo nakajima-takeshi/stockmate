@@ -1,11 +1,11 @@
 <div class="navbar bg-[#f8fffb] fixed top-0 left-0 w-full z-50">
     <div class="flex-1">
-        <%= link_to root_path, class: "btn btn-ghost" do %>
+        <%= link_to root_path, class: "btn btn-ghost p-1" do %>
             <%= image_tag("stockmate_logo.png", class: "h-8 md:h-12", alt: "Stock Mate") %>
         <% end %>
     </div>
-    <div class="flex space-x-2 md:space-x-3">
-        <button class="bg-[#06C755] hover:bg-[#05b54c] text-white rounded px-4 py-2" onclick="my_modal_2.showModal()">友達追加</button>
+    <div class="flex space-x-1 md:space-x-3">
+        <button class="bg-[#06C755] hover:bg-[#05b54c] text-white rounded px-2 py-1 text-xs md:px-4 md:py-2 md:text-base" onclick="my_modal_2.showModal()">友達追加</button>
         <dialog id="my_modal_2" class="modal">
             <div class="modal-box">
                 <h3 class="text-3xl text-[#05b54c] text-center flex-auto font-bold">StockMate 友達追加QR</h3>
@@ -17,6 +17,9 @@
                 <button>close</button>
             </form>
         </dialog>
-        <%= button_to 'LINE登録で始める', user_line_omniauth_authorize_path, data: { turbo: false }, class: "bg-[#06C755] hover:bg-[#05b54c] text-white rounded px-4 py-2" %>
+        <%= button_to 'LINE登録で始める', 
+            user_line_omniauth_authorize_path, 
+            data: { turbo: false }, 
+            class: "bg-[#06C755] hover:bg-[#05b54c] text-white rounded px-2 py-1 text-xs md:px-4 md:py-2 md:text-base" %>
     </div>
 </div>
