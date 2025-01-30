@@ -1,11 +1,11 @@
 <div class="navbar fixed top-0 left-0 w-full bg-[#f8fffb] z-50">
   <div class="flex-1">
-    <%= link_to root_path, class: "btn btn-ghost" do %>
+    <%= link_to root_path, class: "btn btn-ghost p-1" do %>
       <%= image_tag("stockmate_logo.png", class: "h-8 md:h-12", alt: "Stock Mate") %>
     <% end %>
   </div>
-  <div class="flex space-x-2 md:space-x-3">
-    <button class="bg-gray-200 hover:bg-gray-300 text-green-800 rounded px-2 md:px-4 py-2 text-sm md:text-green-800" onclick="my_modal_2.showModal()">友達追加</button>
+  <div class="flex space-x-1 md:space-x-3">
+    <button class="bg-gray-200 hover:bg-gray-300 text-green-800 rounded px-2 py-1 text-xs md:px-4 md:py-2 md:text-base" onclick="my_modal_2.showModal()">友達追加</button>
     <dialog id="my_modal_2" class="modal">
       <div class="modal-box">
         <h3 class="text-3xl text-[#05b54c] text-center flex-auto font-bold">StockMate 友達追加QR</h3>
@@ -17,7 +17,12 @@
         <button>close</button>
       </form>
     </dialog>
-    <%= link_to "マイページ", items_path, class: "bg-gray-200 hover:bg-gray-300 text-green-800 rounded px-2 md:px-4 py-2 text-sm md:text-green-800" %>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "bg-gray-200 hover:bg-gray-300 text-green-800 rounded px-2 md:px-4 py-2 text-sm md:text-green-800" %>
+    <%= link_to "マイページ", 
+        items_path, 
+        class: "bg-gray-200 hover:bg-gray-300 text-green-800 rounded px-2 py-1 text-xs md:px-4 md:py-2 md:text-base" %>
+    <%= link_to "ログアウト", 
+        destroy_user_session_path, 
+        method: :delete, 
+        class: "bg-gray-200 hover:bg-gray-300 text-green-800 rounded px-2 py-1 text-xs md:px-4 md:py-2 md:text-base" %>
   </div>
 </div>
