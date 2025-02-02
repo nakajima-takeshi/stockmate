@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "omniauth_callbacks"
   },
   # 不要なアクションをスキップ
-  skip: [ :registrations, :password, :sessions ]
+  skip: [ :registrations, :password ]
 
   # ログアウトのルーティングをscopeで指定
   devise_scope :user do
