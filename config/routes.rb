@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
+
+  devise_scope :user do
+    get "/users/sign_out" => "devise/sessions#destroy"
+    get "/users/sign_in", to: "application#render_404"
+  end
+
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks"
   },
   # 不要なアクションをスキップ
   skip: [ :registrations, :password ]
-
-  # ログアウトのルーティングをscopeで指定
-  devise_scope :user do
-    get "/users/sign_out" => "devise/sessions#destroy"
-  end
 
   root "static_pages#top"
 
