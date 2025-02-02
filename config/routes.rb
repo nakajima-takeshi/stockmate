@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks"
-  }
+  },
+  # 不要なアクションをスキップ
+  skip: [ :registrations, :password, :sessions ]
 
   # ログアウトのルーティングをscopeで指定
   devise_scope :user do
@@ -26,4 +28,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # 全てのビューファイルでの404エラーに対して対応
+  match "*path", to: "application#render_404", via: :all
 end
