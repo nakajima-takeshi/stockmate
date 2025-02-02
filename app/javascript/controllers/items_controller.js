@@ -31,10 +31,10 @@ export default class extends Controller {
     // 入力されたデータからアセットパイプラインを利用して画像を選択して取得
     const hidden = document.createElement("input")
     const iconPath = this.iconMapping[selectedCategory] || this.iconMapping["others"]
-    hiddenIconField.type = "hidden"
-    hiddenIconField.name = "item[icon_path]"
-    hiddenIconField.value = iconPath
-    event.target.appendChild(hiddenIconField)
+    hidden.type = "hidden"
+    hidden.name = "item[icon_path]" //params[:item][:icon_path]と同義
+    hidden.value = iconPath
+    event.target.appendChild(hidden)
 
     return true
   }
