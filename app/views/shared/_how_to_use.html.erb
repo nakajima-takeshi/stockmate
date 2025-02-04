@@ -1,20 +1,23 @@
 <div class="flex justify-center">
-<button class="btn w-11/12 flex justify-center text-center text-2xl text-green-800" onclick="how_to_use_modal.showModal()">
-    〜使い方〜
-</button>
+    <button class="btn bg-[#f8fffb] hover:bg-white text-2xl text-green-800" onclick="how_to_use_modal.showModal()">
+        〜まずは使い方をチェック！〜
+    </button>
 </div>
 <dialog id="how_to_use_modal" class="modal">
-<div class="modal-box w-11/12 max-w-5xl">
-    <div class="text-xl font-bold m-4">
-        <p class="m-1">（1）新規作成から、それぞれの項目に日用品を入力</p>
-        <p class="m-1">（2）登録時に通知予定日を算出します</p>
-        <p class="m-1">（3）登録した日時にアプリからLINEへ通知が来ます</p>
-        <p class="m-1">（4）<i class="fas fa-clock text-2xl"></i> から好きな日時に通知日を変更できます</p>
-        <p class="m-1">（5）<i class="fas fa-pen text-2xl"></i> から登録内容を編集できます</p>
-        <p class="m-1">（6）LINE上からリッチメニューで通知の新規登録や編集、通知の再設定機能</p>
+    <div class="modal-box w-11/12 max-w-3xl max-h-[70vh] overflow-y-auto">
+        <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+        <div class="text-xl font-bold m-4">
+            <p class="m-1">（1）新規作成から、それぞれの項目に日用品を入力</p>
+            <p class="m-1">（2）登録時に通知予定日を算出します</p>
+            <p class="m-1">（3）登録した日時にアプリからLINEへ通知が来ます</p>
+            <p class="m-1">（4）<i class="fas fa-clock text-2xl"></i> から好きな日時に通知日を変更できます</p>
+            <p class="m-1">（5）<i class="fas fa-pen text-2xl"></i> から登録内容を編集できます</p>
+            <p class="m-1">（6）LINE上からリッチメニューで通知の新規登録や編集、通知の再設定機能</p>
+        </div>
     </div>
-</div>
-<form method="dialog" class="modal-backdrop">
-    <button>close</button>
-</form>
+    <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+    </form>
 </dialog>
