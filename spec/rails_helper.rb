@@ -40,16 +40,24 @@ RSpec.configure do |config|
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
   ]
-
-  # FactoryBot
-  config.include FactoryBot::Syntax::Methods
-  # Omniauthマクロ読み込み
   config.include LineloginMacros
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  config.before(:each, type: :system) do
+    if ENV['SELENIUM_DRIVER_URL']
+      driven_by :remote_chrome
+      Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+      Capybara.server_port = 4444
+      Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
+      Capybara.ignore_hidden_elements = false
+    else
+      driven_by :selenium_chrome_headless
+    end
+  end
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
@@ -75,6 +83,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include FactoryBot::Syntax::Methods
 end
 # OmniAuthのテストモードを有効化
 OmniAuth.config.test_mode = true
