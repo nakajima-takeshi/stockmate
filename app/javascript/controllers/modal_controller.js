@@ -32,7 +32,7 @@ export default class extends Controller {
     }
   }
 
-  // if="modal"のturbo-flame要素を取得
+  // id="modal"のturbo-flame要素を取得
   get #modalTurboFrame() {
     return document.querySelector("turbo-frame[id='modal']");
   }

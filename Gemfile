@@ -65,10 +65,12 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
   gem "rspec-rails"
-
+  
   gem "factory_bot_rails"
-
+  
   gem "faker"
+  
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", "~> 7.0.0", require: false
@@ -86,4 +88,5 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "webdrivers"
 end
