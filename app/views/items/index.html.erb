@@ -7,6 +7,7 @@
       <% if @items.present? %>
       <ul class="space-y-5 mt-4">
       <% @items.each do |item| %>
+        <!-- スマホ画面で表示 -->
         <div class="block md:hidden">
           <div class="mx-auto rounded-lg shadow-lg border overflow-hidden bg-gray-100">
             <div class="relative pb-[60%]">
@@ -40,6 +41,7 @@
           </div>
         </div>
 
+        <!-- PC画面で表示 -->
         <div class="hidden md:block">
           <div class="flex bg-gray-100 shadow-lg rounded-lg w-4xl">
             <a href="<%= item_path(item) %>" class="flex-shrink-0 hover:shadow-2xl transition-shadow">
