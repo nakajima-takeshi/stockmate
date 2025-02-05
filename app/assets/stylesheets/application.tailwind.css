@@ -21,3 +21,8 @@
     background-possition: center;
     min-height: 100vh;
 }
+
+.btn {
+    transition: none !important;
+    transform: none !important;
+}
