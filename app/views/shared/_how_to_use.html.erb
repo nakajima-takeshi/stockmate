@@ -5,81 +5,157 @@
 </div>
 <dialog id="how_to_use_modal" class="modal">
     <div class="modal-box bg-[#f8fffb] w-11/12 max-w-3xl max-h-[70vh] overflow-y-auto font-bold">
-        <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-        </form>
-        <h1 class="text-4xl text-green-800 text-center my-12">〜使い方〜</h1>
-        <ul class="space-y-8">
-            <li>
-                <h2 class="text-3xl text-gray-500 border-b-2 border-gray-200 pb-2">新規作成</h2>
-                <div class="card bg-white shadow-lg p-6">
-                    <div class="flex items-center gap-6 mt-4">
-                        <div class="text-xl font-bold text-green-800 w-1/2 leading-relaxed">
-                            <ul class="list-disc list-inside space-y-4">
-                                <li>各項目を入力して登録します。</li>
-                                <li class="list-item-align">カテゴリー”その他”は、次回の<br>
-                                    通知日が2週間後に設定されます。
-                                </li>
-                                <li class="list-item-align">メモ書きは必須ではないですが、<br>
-                                    登録があると通知や登録確認で<br>
-                                    一緒に表示されます。
-                                </li>
-                                <li class="list-item-align">カテゴリーアイコンをタップすると、登録内容が確認できます。</li>
-                            </ul>
+        <!-- PC画面で表示 -->
+        <div class="hidden md:block">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h1 class="text-4xl text-green-800 text-center my-12">〜使い方〜</h1>
+            <ul class="space-y-8">
+                <li>
+                    <h2 class="text-3xl text-gray-500 border-b-2 border-gray-200 pb-2">新規作成</h2>
+                    <div class="card bg-white shadow-lg p-6">
+                        <div class="flex items-center gap-6 mt-4">
+                            <div class="text-xl font-bold text-green-800 w-1/2 leading-relaxed">
+                                <ul class="list-disc list-inside space-y-4">
+                                    <li>各項目を入力して登録します。</li>
+                                    <li class="list-item-align">カテゴリー”その他”は、次回の<br>
+                                        通知日が2週間後に設定されます。
+                                    </li>
+                                    <li class="list-item-align">メモ書きは必須ではないですが、<br>
+                                        登録があると通知や登録確認で<br>
+                                        一緒に表示されます。
+                                    </li>
+                                    <li class="list-item-align">カテゴリーアイコンをタップすると、登録内容が確認できます。</li>
+                                </ul>
+                            </div>
+                            <%= image_tag("item_create_form.png", class:"border-2 border-gray-200 shadow-md w-72 h-auto object-contain", alt: "item_create") %>
                         </div>
-                        <%= image_tag("item_create_form.png", class:"border-2 border-gray-200 shadow-md w-72 h-auto object-contain", alt: "item_create") %>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <li>
-                <h2 class="text-3xl text-gray-500 border-b-2 border-gray-200 pb-2">次回通知予定日のみの編集</h2>
-                <div class="card bg-white shadow-lg p-6">
-                    <div class="flex items-center gap-6 mt-4">
-                        <div class="text-xl font-bold text-green-800 w-1/2 leading-relaxed">
-                            <ul class="list-disc list-inside space-y-4">
-                                <li class="list-item-align">　<i class="fas fa-clock text-2xl"></i> から次回通知日を<br>
-                                    好きな日時に変更できます。
-                                </li>
-                                <li class="list-item-align">通知日までの間隔を自分なりに<br>
-                                    カスタマイズできます
-                                </li>
-                            </ul>
+                <li>
+                    <h2 class="text-3xl text-gray-500 border-b-2 border-gray-200 pb-2">次回通知予定日のみの編集</h2>
+                    <div class="card bg-white shadow-lg p-6">
+                        <div class="flex items-center gap-6 mt-4">
+                            <div class="text-xl font-bold text-green-800 w-1/2 leading-relaxed">
+                                <ul class="list-disc list-inside space-y-4">
+                                    <li class="list-item-align">　<i class="fas fa-clock text-2xl"></i> から次回通知日を<br>
+                                        好きな日時に変更できます。
+                                    </li>
+                                    <li class="list-item-align">通知日までの間隔を自分なりに<br>
+                                        カスタマイズできます。
+                                    </li>
+                                </ul>
+                            </div>
+                            <%= image_tag("notification_edit_form.png", class:"border-2 border-gray-200 shadow-md w-72 h-auto object-contain", alt: "item_create") %>
                         </div>
-                        <%= image_tag("notification_edit_form.png", class:"border-2 border-gray-200 shadow-md w-72 h-auto object-contain", alt: "item_create") %>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <li>
-                <h2 class="text-3xl text-gray-500 border-b-2 border-gray-200 pb-2">LINE画面での操作</h2>
-                <div class="card bg-white shadow-lg p-6">
-                    <div class="flex items-center gap-6 mt-4">
-                        <div class="text-xl font-bold text-green-800 w-1/2 leading-relaxed">
-                            <ul class="list-disc list-inside space-y-4">
-                                <li class="list-item-align">アプリから通知<br>
-                                    通知日になると、アプリから<br>
-                                    ユーザーのLINEに登録した内容が<br>
-                                    送信されます。
-                                </li>
-                                <li class="list-item-align">「登録確認」<br>
-                                    現在の登録の一覧が表示されます。
-                                </li>
-                                <li class="list-item-align">「在庫補充」<br>
-                                    通知が来た日用品は、LINE上から<br>
-                                    通知の再設定ができます。<br>
-                                    「在庫補充」と入力した後、<br>
-                                    続けて登録した【商品名】を<br>
-                                    入力することで次回通知を<br>
-                                    再設定してくれます。
-                                </li>
-                            </ul>
+                <li>
+                    <h2 class="text-3xl text-gray-500 border-b-2 border-gray-200 pb-2">LINE画面での操作</h2>
+                    <div class="card bg-white shadow-lg p-6">
+                        <div class="flex items-center gap-6 mt-4">
+                            <div class="text-xl font-bold text-green-800 w-1/2 leading-relaxed">
+                                <ul class="list-disc list-inside space-y-4">
+                                    <li class="list-item-align">アプリから通知<br>
+                                        通知日になると、アプリから<br>
+                                        ユーザーのLINEに登録した内容が<br>
+                                        送信されます。
+                                    </li>
+                                    <li class="list-item-align">「登録確認」<br>
+                                        現在の登録の一覧が表示されます。
+                                    </li>
+                                    <li class="list-item-align">「在庫補充」<br>
+                                        通知が来た日用品は、LINE上から<br>
+                                        通知の再設定ができます。<br>
+                                        「在庫補充」と入力した後、<br>
+                                        続けて登録した【商品名】を<br>
+                                        入力することで次回通知を<br>
+                                        再設定してくれます。
+                                    </li>
+                                </ul>
+                            </div>
+                            <%= image_tag("stockmate_line.png", class:"border-2 border-gray-200 shadow-md w-72 h-auto object-contain", alt: "item_check") %>
                         </div>
-                        <%= image_tag("stockmate_line.png", class:"border-2 border-gray-200 shadow-md w-72 h-auto object-contain", alt: "item_check") %>
                     </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- スマホ画面で表示 -->
+        <div class="block md:hidden">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h1 class="text-4xl text-green-800 text-center my-12">〜使い方〜</h1>
+            <ul class="space-y-8">
+                <li>
+                    <h2 class="text-3xl text-gray-500 border-b-2 border-gray-200 pb-2">新規作成</h2>
+                    <div class="card bg-white shadow-lg p-6">
+                        <div class="flex flex-col mt-4">
+                            <div class="text-xl text-left font-bold text-green-800 leading-relaxed pb-4">
+                                <ul class="list-disc list-inside space-y-4">
+                                    <li>各項目を入力して登録します。</li>
+                                    <li class="list-item-align">カテゴリー”その他”は、次回の<br>
+                                        通知日が2週間後に設定されます。
+                                    </li>
+                                    <li class="list-item-align">メモ書きは必須ではないですが、<br>
+                                        登録があると通知や登録確認で<br>
+                                        一緒に表示されます。
+                                    </li>
+                                    <li class="list-item-align">カテゴリーアイコンをタップすると、登録内容が確認できます。</li>
+                                </ul>
+                            </div>
+                            <%= image_tag("item_create_form.png", class:"border-2 border-gray-200 shadow-md w-72 h-auto object-contain mx-auto py-4", alt: "item_create") %>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <h2 class="text-3xl text-gray-500 border-b-2 border-gray-200 pb-2">次回通知予定日のみの編集</h2>
+                    <div class="card bg-white shadow-lg p-6">
+                        <div class="flex flex-col mt-4">
+                            <div class="text-xl font-bold text-green-800 leading-relaxed pb-4">
+                                <ul class="list-disc list-inside space-y-4">
+                                    <li class="list-item-align">　<i class="fas fa-clock text-2xl"></i> から次回通知日を好きな日時に変更できます。</li>
+                                    <li class="list-item-align">通知日までの間隔を自分なりに<br>
+                                        カスタマイズできます。
+                                    </li>
+                                </ul>
+                            </div>
+                            <%= image_tag("notification_edit_form.png", class:"border-2 border-gray-200 shadow-md w-72 h-auto object-contain mx-auto p-6", alt: "item_create") %>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <h2 class="text-3xl text-gray-500 border-b-2 border-gray-200 pb-2">LINE画面での操作</h2>
+                    <div class="card bg-white shadow-lg p-6">
+                        <div class="flex flex-col mt-4">
+                            <div class="text-xl font-bold text-green-800 leading-relaxed pb-4">
+                                <ul class="list-disc list-inside space-y-4">
+                                    <li class="list-item-align">アプリから通知<br>
+                                        通知日になると、ユーザーのLINEにアプリから登録した内容が送信されてきます。
+                                    </li>
+                                    <li class="list-item-align">「登録確認」<br>
+                                        現在の登録の一覧が表示されます。</li>
+                                    <li class="list-item-align">「在庫補充」<br>
+                                        通知が来た日用品は、LINE上から<br>
+                                        通知の再設定ができます。<br>
+                                        「在庫補充」と入力した後、続けて<br>
+                                        補充した【商品名】を入力して<br>
+                                        次回通知を再設定してくれます。
+                                    </li>
+                                </ul>
+                            </div>
+                            <%= image_tag("stockmate_line.png", class:"border-2 border-gray-200 shadow-md w-72 h-auto object-contain mx-auto p-6", alt: "item_check") %>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
     <form method="dialog" class="modal-backdrop">
         <button>close</button>
