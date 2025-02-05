@@ -6,6 +6,11 @@
     .dynamic-width {
         @apply min-w-[400px] max-w-[600px] break-words;
     }
+
+    .list-item-align {
+        text-indent: -1.5rem;
+        padding-left: 1.5rem;
+    }
 }
 
 .bg-fixed{

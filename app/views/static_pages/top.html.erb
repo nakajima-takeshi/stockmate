@@ -3,20 +3,7 @@
         <%= image_tag("stockmate_static_page.png", alt: "Stock Mate") %>
     </div>
 
-    <div class="container m-8 p-8 shadow-lg max-w-4xl bg-[#f8fffb]/70 mx-auto px-4 mt-16">
-        <div class="text-2xl font-bold text-center">〜使い方〜</div>
-        <div class="text-xl font-bold m-4">
-            <p class="m-1">（1）新規作成から、それぞれの項目に日用品を入力</p>
-            <p class="m-1">（2）登録時に通知予定日を算出します</p>
-            <p class="m-1">（3）登録した日時にアプリからLINEへ通知が来ます</p>
-            <p class="m-1">（4）<i class="fas fa-clock text-2xl"></i> から好きな日時に通知日を変更できます</p>
-            <p class="m-1">（5）<i class="fas fa-pen text-2xl"></i> から登録内容を編集できます</p>
-            <p class="m-1">（6）LINE上からリッチメニューで通知の新規登録や編集、通知の再設定機能</p>
-        </div>
-        <div class="text-2xl font-bold mt-6 text-center mt-14">〜本リリース実装予定〜</div>
-        <div class="text-xl font-bold m-4">
-            <p class="m-1">（1）トップページに使い方、できることの作成</p>
-            <p class="m-1">（2）一覧など全体のデザインの統一</p>
-        </div>
+    <div class="container mx-auto px-4 mt-16">
+        <%= render 'shared/how_to_use' %>
     </div>
 </div>
