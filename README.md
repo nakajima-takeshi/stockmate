@@ -1,13 +1,14 @@
 # サービス名: StockMate
+[![Image from Gyazo](https://i.gyazo.com/7c4ae9f5eeafaf40df2bc46f2b7bc021.jpg)](https://gyazo.com/7c4ae9f5eeafaf40df2bc46f2b7bc021)
 ## サービス概要
-- 登録された日用品の消耗具合を予測して、減ってきたタイミングで通知してくれます
-- 通知をLINE履歴で確認できるので、「何買えばいいんだっけ？」とわからなくなることを防止することができます
+登録された日用品の消耗具合を予測して、減ってきたタイミングで通知してくれます。
+通知をLINE履歴で確認できるので、「何買えばいいんだっけ？」とわからなくなることを防止することができます。
 ## 開発背景
 一人暮らしをしていると、以下のようなシチュエーションがありました。
 
-普段使っているシャンプーの残量が少なくなってきていることに気づき、次の日の仕事帰りに買おうと考えていた。
-しかし次の日、そのことを忘れてしまっており、また少なくなってきた時に在庫がないことに気づいた。
-それ以外にも日用品をまとめて購入しようと考え、休日にその他の日用品をまとめて購入に行ったのだが、帰宅後にシャンプーを買い忘れていることに気づき、もう一度買いに戻る必要があった。
+普段使っているシャンプーの残量が少なくなってきていることに気付き、明日の仕事帰りにドラッグストアに寄ることにした。
+しかし次の日、帰宅後に買って帰ることを忘れていたことを、シャワーを浴びてから気付いた。
+休日になり、ドラッグストアで在庫を購入し帰宅したところ、今度は食器用洗剤の量が少なくなっていることに気づいた。
 
 このように***日用品の買い忘れ***や***次はいつ、どの日用品が切れそうか***をアプリから管理できたら便利だなと考え、制作を決めました。
 
@@ -17,9 +18,19 @@
 - 管理する消耗品が多いと感じている人
 
 ## サービスの利用イメージ
-- ユーザーは通知してほしい日用品を登録します
-- アプリ内で残量が少なくなる日時を予測し、その日時になったタイミングでユーザーへLINE通知を送ります
-- ユーザーはLINE通知を見ることで、どの日用品を購入すればいいか確認することができます
+### 新規作成・編集
+[![Image from Gyazo](https://i.gyazo.com/d6d1bcce33b92a95273aaba79f154978.png)](https://gyazo.com/d6d1bcce33b92a95273aaba79f154978)
+
+### 詳細ページ
+[![Image from Gyazo](https://i.gyazo.com/23fd9412c04772f32265aafda93fc518.png)](https://gyazo.com/23fd9412c04772f32265aafda93fc518)
+- 一覧ページのカテゴリーアイコンをタップすると確認できます
+
+### 通知予定日の編集
+[![Image from Gyazo](https://i.gyazo.com/63eccb049f39540b59ffd2fb9ef74fef.png)](https://gyazo.com/63eccb049f39540b59ffd2fb9ef74fef)
+
+### LINE画面での操作
+[![Image from Gyazo](https://i.gyazo.com/c9a4e87a9cb61580c04477fd6183cd9a.png)](https://gyazo.com/c9a4e87a9cb61580c04477fd6183cd9a)
+
 
 ## ユーザーの獲得・宣伝方法
 - Xによる宣伝
@@ -96,12 +107,12 @@ ___[通知タイミング(何日後か) = (内包量 - 1日の推定消費量) <
 ## 使用技術
 - JavaScript/Stimulus/TailwindCSS/DaisyUI
 - Ruby on Rails7.1.4.2
-- Docker/docker-compose
+- Docker
 - GitHub Actions
 - devise
 - MySQL
 - Heroku/Cloudflare
-- LINEMessaging API
+- LINE Messaging API
 
 ### 画面遷移図
 Figma: https://www.figma.com/design/2VwD5fdGWkb8wJjEbBMAnv/%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C%E3%82%A2%E3%83%97%E3%83%AA%E3%80%80%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E8%A8%AD%E5%AE%9A?node-id=0-1&node-type=canvas&t=e5a8zFrOt7y4jZOS-0
@@ -147,7 +158,7 @@ Figma: https://www.figma.com/design/2VwD5fdGWkb8wJjEbBMAnv/%E5%8D%92%E6%A5%AD%E5
   - used_count_per_weekly: 一週間の使用回数
   - memo: フリーメモ
 
-- Notificationsテーブル: 算出された通知日を保存します。在庫補充された際、通知日の再設定をする際に使用する前回通知日やインターバル情報を保存するため、通知関連はItemsテーブルから独立させたテーブルに保存します。
+- Notificationsテーブル: 算出された通知日を保存します。在庫補充された際、通知日の再設定をする際に使用する前回通知日やインターバル情報を保存するため、通知関連はItemsテーブルから独立させたテーブルに保存します
   - next_notification_day: 通知予定日
   - last_notification_day: 前回通知日
   - notification_interval: 通知予定日までの間隔
