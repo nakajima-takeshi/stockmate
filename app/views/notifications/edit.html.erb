@@ -1,7 +1,7 @@
 <turbo-frame id="modal">
     <div data-controller="modal" data-action="turbo:submit-end->modal#hideOnSubmit keydown.esc->modal#hide" role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
     <%= button_to nil, nil, type: :button, method: :get, form: { data: { action: "modal#hide"} }, class: "fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30" %>
-        <div class="container relative z-20 w-full max-w-2xl max-h-screen overflow-y-auto bg-white shadow-lg rounded-md">
+        <div class="container relative z-20 w-full max-w-2xl max-h-screen overflow-y-auto bg-[#f8fffb] shadow-lg rounded-md">
             <div class="py-8 flex items-center justify-center">
                 <div class="rounded-lg w-full h-full max-w-md p-8 bg-gray-100 shadow-xl">
                     <div class="text-center mb-6">
