@@ -13,20 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget curl unzip
-          sudo apt-get install -y google-chrome-stable
-
-      - name: Install ChromeDriver
-        run: |
-          CHROME_VERSION=$(google-chrome-stable --version | sed 's/Google Chrome //')
-          CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
-          wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -83,8 +69,8 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: mysql2://root:password@127.0.0.1:3306/myapp_test
         run: |
-          bin/rails db:test:prepare
-          bundle exec rspec
+          bin/rails db:test:prepar
+          bin/rails test test:system
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
