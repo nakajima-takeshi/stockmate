@@ -13,7 +13,7 @@ RSpec.describe 'Items', type: :system do
         context '正常な入力' do
             it '成功する' do
                 visit new_item_path
-                select 'shampoo', from: 'category-select'
+                select 'シャンプー', from: 'category-select'
                 fill_in 'item[name]', with: 'Test_sample'
                 fill_in 'item[volume]', with: '300'
                 fill_in 'item[used_count_per_weekly]', with: '7'
