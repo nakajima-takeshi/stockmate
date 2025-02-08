@@ -5,6 +5,5 @@ FactoryBot.define do
     volume { 300 }
     used_count_per_weekly { 7 }
     memo { "test" }
-    association :user
   end
 end
