@@ -4,11 +4,10 @@ RSpec.describe Item, type: :model do
   before do
     mock_auth_hash
   end
+  let(:auth) { OmniAuth.config.mock_auth[:line] }
+  let!(:user) { User.from_omniauth(auth) }
 
   describe 'バリデーションチェック' do
-    let(:auth) { OmniAuth.config.mock_auth[:line] }
-    let!(:user) { User.from_omniauth(auth) }
-
     it '設定したすべてのバリデーションが機能しているか' do
       item = build(:item, user: user)
       expect(item).to be_valid
@@ -91,6 +90,13 @@ RSpec.describe Item, type: :model do
         expect(item).to be_valid
         expect(item.errors).to be_empty
       end
+    end
+  end
+
+  describe '次回通知予定日の算出' do
+    it '次回通知予定日を計算できる' do
+      item = build(:item, user: user)
+      expect(item.calculate_next_notification_day).to eq(Date.today + 34.days)
     end
   end
 end
