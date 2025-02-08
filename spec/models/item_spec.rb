@@ -30,7 +30,8 @@ RSpec.describe Item, type: :model do
       end
 
       it '名前が30文字以上' do
-        item = build(:item, user: user, name: "a" * 31)
+        name = Faker::Lorem.characters(number: 31)
+        item = build(:item, user: user, name: name)
         expect(item).to be_invalid
         expect(item.errors.full_messages).to include("名前は30文字以内で入力してください")
       end
