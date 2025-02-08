@@ -2,12 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Items', type: :system do
     before do
+        mock_auth_hash
         line_login
     end
 
     let(:auth) { OmniAuth.config.mock_auth[:line] }
     let!(:user) { User.from_omniauth(auth) }
-    let!(:item) { create(:item, user: user) }
+    let(:item) { create(:item, user: user, name: 'Another_item') }
 
     describe '日用品の新規登録画面' do
         context '正常な入力' do
@@ -55,6 +56,19 @@ RSpec.describe 'Items', type: :system do
                 fill_in 'item[memo]', with: 'test'
                 click_button '更新'
                 expect(page).to have_content '名前は30文字以内で入力してください'
+            end
+
+            it '同じ名前がすでに登録されているため失敗する' do
+                visit new_item_path                
+                create(:item, user: user, name: 'Test_item')
+                visit edit_item_path(item)
+                select 'シャンプー', from: 'category-select'
+                fill_in 'item[name]', with: 'Test_item'
+                fill_in 'item[volume]', with: '300'
+                fill_in 'item[used_count_per_weekly]', with: '7'
+                fill_in 'item[memo]', with: 'test'
+                click_button '更新'
+                expect(page).to have_content '名前はすでに存在しています。重複しないようにしてください'
             end
         end
 
