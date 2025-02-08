@@ -46,15 +46,15 @@ RSpec.describe 'Items', type: :system do
                 expect(page).to have_content '名前を入力してください'
             end
 
-            it '同じ名前がすでに登録されているため失敗する' do
-            end
-
             it '入力された名前が30文字以上で失敗する' do
-            end
-        end
-
-        context '登録内容の詳細画面' do
-            it '詳細ページにアクセスできる' do
+                visit edit_item_path(item)
+                select 'シャンプー', from: 'category-select'
+                fill_in 'item[name]', with: 'a' * 31
+                fill_in 'item[volume]', with: '300'
+                fill_in 'item[used_count_per_weekly]', with: '7'
+                fill_in 'item[memo]', with: 'test'
+                click_button '更新'
+                expect(page).to have_content '名前は30文字以内で入力してください'
             end
         end
 
