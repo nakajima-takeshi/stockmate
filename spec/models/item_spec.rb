@@ -33,6 +33,13 @@ RSpec.describe Item, type: :model do
       expect(item.errors.full_messages).to include("名前は30文字以内で入力してください")
     end
 
+    it '名前が重複' do
+      item_first = create(:item, user: user)
+      item_second = build(:item, user: user, name: "Test_item")
+      expect(item_second).to be_invalid
+      expect(item_second.errors.full_messages).to include("名前はすでに存在しています。重複しないようにしてください")
+    end
+
     it '内包量の入力欄が空' do
       item = build(:item, user: user, volume: nil)
       expect(item).to be_invalid
@@ -61,6 +68,19 @@ RSpec.describe Item, type: :model do
       item = build(:item, user: user, used_count_per_weekly: "１")
       expect(item).to be_invalid
       expect(item.errors.full_messages).to include("一週間の使用回数は数値で入力してください")
+    end
+
+    it 'メモが65535文字以上入力されている' do
+      memo = Faker::Lorem.characters(number: 65_536)
+      item = build(:item, user: user, memo: memo)
+      expect(item).to be_invalid
+      expect(item.errors.full_messages).to include("メモは65,535文字以内で入力してください")
+    end
+
+    it 'メモは空欄でも有効' do
+      item = build(:item, user: user, memo: nil)
+      expect(item).to be_valid
+      expect(item.errors).to be_empty
     end
   end
 end
