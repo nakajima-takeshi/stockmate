@@ -58,6 +58,14 @@ RSpec.describe 'Items', type: :system do
             end
         end
 
+        context '登録内容の詳細画面' do
+            it '詳細ページにアクセスできる' do
+                notification = create(:notification, item: item)
+                visit item_path(item)
+                expect(page).to have_current_path(item_path(item.id))
+            end
+        end
+
         context '登録内容の削除' do
             it '成功する' do
             end
