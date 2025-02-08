@@ -7,7 +7,7 @@ module OmniauthMacros
                 email: 'test@example.com',
                 name: 'Test User'
             },
-            credentials: { 
+            credentials: {
                 token: 'mock_token',
                 refresh_token: 'mock_refresh_token',
                 expires_at: Time.now + 1.week

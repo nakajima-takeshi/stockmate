@@ -4,8 +4,8 @@ ja:
       item:
         category: "カテゴリー"
         name: "名前"
-        volume: "容量"
-        used_count_per_weekly: "一週間の使用量"
+        volume: "内包量"
+        used_count_per_weekly: "一週間の使用回数"
         memo: "メモ"
       notification:
         next_notification_day: "通知日"
@@ -24,6 +24,8 @@ ja:
             used_count_per_weekly:
               blank: "を入力してください"
               not_a_number: "は数値で入力してください"
+            memo:
+              too_long: "は65,535文字以内で入力してください"
         notification:
           attributes:
             next_notification_day:
