@@ -14,7 +14,7 @@ ja:
         item:
           attributes:
             category:
-              blank: "を入力してください"
+              blank: "を選択してください"
             name:
               blank: "を入力してください"
               taken: "はすでに存在しています。重複しないようにしてください"

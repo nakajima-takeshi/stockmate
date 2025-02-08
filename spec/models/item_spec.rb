@@ -18,7 +18,7 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが選択されていない' do
         item = build(:item, user: user, category: nil)
         expect(item).to be_invalid
-        expect(item.errors.full_messages).to include("カテゴリーを入力してください")
+        expect(item.errors.full_messages).to include("カテゴリーを選択してください")
       end
     end
 
