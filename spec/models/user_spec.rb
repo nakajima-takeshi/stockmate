@@ -3,15 +3,13 @@ require "rails_helper"
 RSpec.describe User, type: :model do
     describe 'LINE認証データからユーザーを作成' do
         before do
-            # OmniAuthのモックデータを使って、ユーザーを作成
             mock_auth_hash
-            @user = User.from_omniauth(auth)
         end
         let(:auth) { OmniAuth.config.mock_auth[:line] }
 
         context 'ユーザー情報が登録されていない' do
-            it 'ユーザー作成' do
-                user = @user
+            let(:user) { User.from_omniauth(auth) }
+            it 'ユーザー新規登録する' do
                 expect(user).to be_persisted # DBに存在しているか
                 expect(user.email).to eq('test@example.com')
                 expect(user.name).to eq('Test User')
@@ -22,9 +20,9 @@ RSpec.describe User, type: :model do
 
         context 'すでにユーザー情報が登録されている' do
             it '既存のユーザーを取得する' do
-                user = @user
-                expect(user).to be_persisted
-                expect(user).to eq(user)
+                first_user = User.from_omniauth(auth)
+                second_user = User.from_omniauth(auth)
+                expect(first_user).to eq(second_user)
             end
         end
     end
