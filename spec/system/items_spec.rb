@@ -33,10 +33,17 @@ RSpec.describe 'Items', type: :system do
                 fill_in 'item[memo]', with: 'test'
                 click_button '更新'
                 expect(page).to have_content 'カテゴリーを選択してください'
-
             end
 
             it '名前が空欄になっていたため失敗する' do
+                visit edit_item_path(item)
+                select 'シャンプー', from: 'category-select'
+                fill_in 'item[name]', with: ''
+                fill_in 'item[volume]', with: '300'
+                fill_in 'item[used_count_per_weekly]', with: '7'
+                fill_in 'item[memo]', with: 'test'
+                click_button '更新'
+                expect(page).to have_content '名前を入力してください'
             end
 
             it '同じ名前がすでに登録されているため失敗する' do
