@@ -63,5 +63,4 @@ RSpec.describe Item, type: :model do
       expect(item.errors[:used_count_per_weekly]).to include("は数値で入力してください")
     end
   end
-
 end
