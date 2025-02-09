@@ -26,6 +26,21 @@ RSpec.describe 'Items', type: :system do
     end
 
     describe '日用品の編集画面' do
+        context '正常な入力' do
+            it '成功する' do
+                visit new_item_path                
+                create(:item, user: user)
+                visit edit_item_path(item)
+                select 'シャンプー', from: 'category-select'
+                fill_in 'item[name]', with: 'Test_sample'
+                fill_in 'item[volume]', with: '300'
+                fill_in 'item[used_count_per_weekly]', with: '7'
+                fill_in 'item[memo]', with: 'test'
+                click_button '更新'
+                expect(page).to have_content '登録内容を更新しました'
+            end
+        end
+
         context '異常な入力' do
             it 'カテゴリーを選択されていないため失敗する' do
                 visit edit_item_path(item)
@@ -88,9 +103,7 @@ RSpec.describe 'Items', type: :system do
             item = create(:item, user: user)
             notification = create(:notification, item: item)
             visit item_path(item)
-            # ダイアログ
-            accept_confirm do
-                # ゴミ箱アイコン
+            page.accept_confirm do
                 click_link nil, href: item_path(item)
             end
             expect(page).not_to have_content(item.name)
