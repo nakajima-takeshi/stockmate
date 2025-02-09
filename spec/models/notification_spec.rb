@@ -1,9 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Notification, type: :model do
-  describe 'バリデーションチェック' do
-    let(:notification) { build(:notification) }
+  before do
+    mock_auth_hash
+  end
+  let(:auth) { OmniAuth.config.mock_auth[:line] }
+  let!(:user) { User.from_omniauth(auth) }
+  let(:item) { create(:item, user: user)}
+  let(:notification) { build(:notification) }
 
+  describe 'バリデーションチェック' do
     it '設定したすべてのバリデーションが機能しているか' do
       expect(notification).to be_valid
       expect(notification.errors).to be_empty
@@ -27,4 +33,13 @@ RSpec.describe Notification, type: :model do
       expect(notification.errors.full_messages).to include('通知日は１年以内の日付を入力してください')
     end
   end
+
+  describe '通知メッセージ' do
+    it '作成に成功する' do
+      created_message = "商品名【Test_item】の在庫補充をしてください。\n"\
+                        "カテゴリー : シャンプー\n" \
+                        "メモ書きがあります。\n" \
+                        "メモ内容 : test\n"
+      expect(notification.create_notification_message).to eq created_message
+    end
 end
