@@ -42,4 +42,5 @@ RSpec.describe Notification, type: :model do
                         "メモ内容 : test\n"
       expect(notification.create_notification_message).to eq created_message
     end
+  end
 end
