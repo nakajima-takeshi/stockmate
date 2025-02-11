@@ -77,7 +77,8 @@ class LinebotController < ApplicationController
         item_name = event.message["text"]
         item = Item.joins(:notification)
                    .includes(:notification)
-                   .find_by(name: item_name)
+                   .find_by(name: item_name, user_id: user.id)
+
         if item.nil?
             return {
                 type: "text",

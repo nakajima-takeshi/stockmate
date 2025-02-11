@@ -5,9 +5,9 @@ class ItemsController < ApplicationController
 
   def index
     @items = current_user.items
-                        .joins(:notification)
-                        .includes(:user, :notification)
-                        .order("notifications.next_notification_day ASC")
+                         .joins(:notification)
+                         .includes(:user, :notification)
+                         .order("notifications.next_notification_day ASC")
   end
 
   def show
