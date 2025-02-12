@@ -40,7 +40,7 @@ RSpec.describe Item, type: :model do
         item_first = create(:item, user: user)
         item_second = build(:item, user: user, name: "Test_item")
         expect(item_second).to be_invalid
-        expect(item_second.errors.full_messages).to include("名前はすでに存在しています。重複しないようにしてください")
+        expect(item_second.errors.full_messages).to include("名前はすでに登録されています。重複しないようにしてください")
       end
     end
 
