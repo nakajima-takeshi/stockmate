@@ -85,7 +85,7 @@ RSpec.describe 'Items', type: :system do
                 fill_in 'item[used_count_per_weekly]', with: '7'
                 fill_in 'item[memo]', with: 'test'
                 click_button '更新'
-                expect(page).to have_content '名前はすでに存在しています。重複しないようにしてください'
+                expect(page).to have_content '名前はすでに登録されています。重複しないようにしてください'
             end
         end
     end
