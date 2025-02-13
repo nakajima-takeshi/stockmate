@@ -5,7 +5,7 @@ RSpec.describe Item, type: :model do
     mock_auth_hash
   end
   let(:auth) { OmniAuth.config.mock_auth[:line] }
-  let!(:user) { User.from_omniauth(auth) }
+  let(:user) { User.from_omniauth(auth) }
 
   describe 'バリデーションチェック' do
     it '設定したすべてのバリデーションが機能しているか' do

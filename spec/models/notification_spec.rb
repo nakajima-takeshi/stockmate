@@ -5,7 +5,7 @@ RSpec.describe Notification, type: :model do
     mock_auth_hash
   end
   let(:auth) { OmniAuth.config.mock_auth[:line] }
-  let!(:user) { User.from_omniauth(auth) }
+  let(:user) { User.from_omniauth(auth) }
   let(:item) { create(:item, user: user)}
   let(:notification) { build(:notification) }
 
