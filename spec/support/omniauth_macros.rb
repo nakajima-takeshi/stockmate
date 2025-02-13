@@ -5,7 +5,8 @@ module OmniauthMacros
             uid: '12345',
             info: {
                 email: 'test@example.com',
-                name: 'Test User'
+                name: 'Test User',
+                password: '12345678909876543212'
             },
             credentials: {
                 token: 'mock_token',
