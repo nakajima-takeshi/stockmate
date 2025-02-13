@@ -7,7 +7,7 @@ RSpec.describe 'Items', type: :system do
     end
 
     let(:auth) { OmniAuth.config.mock_auth[:line] }
-    let!(:user) { User.from_omniauth(auth) }
+    let(:user) { User.from_omniauth(auth) }
     let(:item) { create(:item, user: user, name: 'Another_item') }
 
     describe '日用品の新規登録画面' do
