@@ -10,7 +10,7 @@ class Item < ApplicationRecord
 
     scope :order_by_notification_date_asc, -> { order(Notification.arel_table[:next_notification_day].asc) }
     scope :order_by_category, -> { order(:category) }
-    scope :order_by_updated_at, -> { order(:updated_at) }
+    scope :order_by_updated_at, -> { order(updated_at: :desc) }
 
     AVERAGE_USAGE = {
         "shampoo" => 6,
