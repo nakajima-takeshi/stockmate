@@ -7,7 +7,15 @@ class ItemsController < ApplicationController
     @items = current_user.items
                          .joins(:notification)
                          .includes(:user, :notification)
-                         .order("notifications.next_notification_day ASC")
+
+    case params[:sort]
+    when 'category'
+      @items = @items.order_by_category
+    when 'updated_at'
+      @items = @items.order_by_updated_at
+    when 'notification_date', nil
+      @items = @items.order_by_notification_date_asc
+    end
   end
 
   def show
