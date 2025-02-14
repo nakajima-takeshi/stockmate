@@ -8,6 +8,10 @@ class Item < ApplicationRecord
     validates :used_count_per_weekly, presence: true, numericality: { only_integer: true, other_than: 0 }
     validates :memo, length: { maximum: 65_535 }, allow_nil: true
 
+    scope :order_by_notification_date_asc, -> { order(Notification.arel_table[:next_notification_day].asc) }
+    scope :order_by_category, -> { order(:category) }
+    scope :order_by_updated_at, -> { order(:updated_at) }
+
     AVERAGE_USAGE = {
         "shampoo" => 6,
         "body_soap" => 6,
