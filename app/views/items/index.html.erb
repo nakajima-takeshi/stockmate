@@ -3,14 +3,16 @@
       <div class="font-bold mt-8 text-center text-5xl text-green-800 mb-8">登録一覧</div>
     <%= render 'shared/flash_message' %>
     <div class="font-bold text-xl">
-      <div class="flex justify-between items-center mx-4">
+      <div class="flex justify-between items-center m-4">
         <select class="select border px-2 py-1 w-32" onchange="location.href=this.value">
-          <option disabled selected>選択</option>
+          <option disabled selected>並び替え</option>
           <option value="<%= items_path(sort: 'category') %>"<%= "selected" if params[:sort] == "category" %>>カテゴリー</option>
           <option value="<%= items_path(sort: 'updated_at') %>"<%= "selected" if params[:sort] == "updated_at" %>>更新日時</option>
           <option value="<%= items_path(sort: 'notification_date') %>"<%= "selected" if params[:sort] == "notification_date" %>>次回の通知日</option>
         </select>
-        <%= link_to '新規登録', new_item_path, class: 'text-3xl text-blue-500 hover:underline' %>
+        <%= link_to new_item_path, class: 'text-3xl text-blue-500 hover:text-blue-700' do %>
+          <i class="fa-solid fa-square-plus text-5xl"></i>
+        <% end %>
       </div>
       <% if @items.present? %>
         <ul class="space-y-5 mt-4">
@@ -89,7 +91,9 @@
           <% end %>
         </ul>
       <% else %>
-        <div class="mb-3 text-center text-3xl text-gray-500">登録がありません</div>
+        <div class="mb-3 text-center text-3xl text-gray-500">
+          まず左上の <i class="fa-solid fa-square-plus text-3xl text-blue-500"></i> から登録してみましょう！
+        </div>
       <% end %>
     </div>
   </div>
