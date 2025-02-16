@@ -34,8 +34,11 @@ RSpec.describe Notification, type: :model do
     end
   end
 
-  describe '通知メッセージ' do
-    it '作成に成功する' do
+  describe '通知メッセージの作成' do
+    let!(:notification) { create(:notification, item: item) }
+
+    it '成功する' do
+      allow(notification).to receive(:next_notification_day).and_return(Date.today)
       created_message = "商品名【Test_item】の在庫補充をしてください。\n"\
                         "カテゴリー : シャンプー\n" \
                         "メモ書きがあります。\n" \
