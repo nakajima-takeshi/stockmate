@@ -71,7 +71,7 @@ RSpec.describe "LinebotController", type: :request do
         controller = LinebotController.new
         response = controller.send(:handle_message_event, event)
         expect(response[:type]).to eq('text')
-        expect(response[:text]).to include("#{item.name}を補充しました。\n次回通知日は#{item.notification.next_notification_day + 49.days}です。")
+        expect(response[:text]).to include("#{item.name}を補充しました。\n次回通知日は#{item.notification.next_notification_day + 43.days}です。")
       end
     end
   end
