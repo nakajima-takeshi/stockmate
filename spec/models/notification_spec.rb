@@ -6,7 +6,7 @@ RSpec.describe Notification, type: :model do
   end
   let(:auth) { OmniAuth.config.mock_auth[:line] }
   let(:user) { User.from_omniauth(auth) }
-  let(:item) { create(:item, user: user)}
+  let(:item) { create(:item, user: user) }
   let(:notification) { build(:notification) }
 
   describe 'バリデーションチェック' do

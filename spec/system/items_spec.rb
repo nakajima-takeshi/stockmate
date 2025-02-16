@@ -28,7 +28,7 @@ RSpec.describe 'Items', type: :system do
     describe '日用品の編集画面' do
         context '正常な入力' do
             it '成功する' do
-                visit new_item_path                
+                visit new_item_path
                 create(:item, user: user)
                 visit edit_item_path(item)
                 select 'シャンプー', from: 'category-select'
@@ -76,7 +76,7 @@ RSpec.describe 'Items', type: :system do
             end
 
             it '同じ名前がすでに登録されているため失敗する' do
-                visit new_item_path                
+                visit new_item_path
                 create(:item, user: user, name: 'Test_item')
                 visit edit_item_path(item)
                 select 'シャンプー', from: 'category-select'
