@@ -9,11 +9,11 @@ class ItemsController < ApplicationController
                          .includes(:user, :notification)
 
     case params[:sort]
-    when 'category'
+    when "category"
       @items = @items.order_by_category
-    when 'updated_at'
+    when "updated_at"
       @items = @items.order_by_updated_at
-    when 'notification_date', nil
+    when "notification_date", nil
       @items = @items.order_by_notification_date_asc
     end
   end
