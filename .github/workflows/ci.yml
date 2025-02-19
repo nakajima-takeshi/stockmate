@@ -29,7 +29,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
       - name: Lint code for consistent style
-        run: bin/rubocop -f github
+        run: bin/rubocop -a -f github
 
   test:
     runs-on: ubuntu-latest
@@ -59,7 +59,7 @@ jobs:
           DATABASE_URL: mysql2://root:password@127.0.0.1:3306/myapp_test
         run: |
           bin/rails db:test:prepare
-          bin/rails test:system
+          bin/rails test test:system
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
         if: failure()
