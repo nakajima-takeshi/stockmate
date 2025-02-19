@@ -50,7 +50,7 @@ RSpec.describe "LinebotController", type: :request do
       end
     end
 
-    # MESSAGE_STEPは正常に動作しているものとすること
+    # MESSAGE_STEPは正常に動作しているものとする
     context '"在庫補充"と入力された時' do
       let(:message_text) { '在庫補充' }
 

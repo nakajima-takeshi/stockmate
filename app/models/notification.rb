@@ -2,9 +2,8 @@ class Notification < ApplicationRecord
   include Line::ClientConcern
   belongs_to :item
 
-  validate :valid_update_next_notification_day
+  validate :valid_next_notification_day
 
-  # itemモデル
   def item_update_next_notification_day
     new_notification_day = item.calculate_next_notification_day
     interval = (new_notification_day - Date.today).to_i
@@ -12,7 +11,6 @@ class Notification < ApplicationRecord
                 notification_interval: interval)
   end
 
-  # notificationモデル
   def notification_update_next_notification_day(new_notification_day)
     interval = (new_notification_day - Date.today).to_i
     self.update(next_notification_day: new_notification_day,
@@ -23,9 +21,8 @@ class Notification < ApplicationRecord
     self.update(last_notification_day: Date.today)
   end
 
-  # LineBot
-  def line_update_next_notification_day
-    interval_days = item.line_calculate_next_notification_day
+  def linebot_update_next_notification_day
+    interval_days = item.linebot_calculate_next_notification_day
     new_notification_day = Date.today + interval_days
     self.update(
       next_notification_day: new_notification_day,
@@ -72,7 +69,7 @@ class Notification < ApplicationRecord
 
   private
 
-  def valid_update_next_notification_day
+  def valid_next_notification_day
     if next_notification_day.blank?
       errors.add(:next_notification_day, :blank_field)
     elsif next_notification_day < Date.today + 1.days

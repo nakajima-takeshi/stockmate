@@ -61,7 +61,6 @@ class LinebotController < ApplicationController
         end
     end
 
-    # 在庫補充
     def handle_message_item_name(event)
         user = User.find_by(uid: event["source"]["userId"])
 
@@ -84,14 +83,13 @@ class LinebotController < ApplicationController
             }
         end
 
-        item.notification.line_update_next_notification_day
+        item.notification.linebot_update_next_notification_day
         {
             type: "text",
             text: "#{item.name}を補充しました。\n次回通知日は#{item.notification.next_notification_day}です。"
         }
     end
 
-    # 登録確認
     def get_inventory_list(event)
         user = User.find_by(uid: event["source"]["userId"])
 

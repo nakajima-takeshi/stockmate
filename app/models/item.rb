@@ -53,7 +53,7 @@ class Item < ApplicationRecord
         (next_notification_day - Date.today).to_i
     end
 
-    def line_calculate_next_notification_day
+    def linebot_calculate_next_notification_day
         if self.category == "others"
             return 14
         end
