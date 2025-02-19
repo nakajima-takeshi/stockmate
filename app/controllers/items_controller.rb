@@ -4,9 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [ :show, :edit, :update ]
 
   def index
-    @items = current_user.items
-                         .joins(:notification)
-                         .includes(:user, :notification)
+    @items = current_user.items.joins(:notification).includes(:user, :notification)
 
     case params[:sort]
     when "category"

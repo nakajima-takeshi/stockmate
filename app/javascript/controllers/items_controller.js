@@ -19,23 +19,15 @@ export default class extends Controller {
     'others': '/assets/icons/others.jpg'
   }
 
-  // カテゴリー未選択の場合はエラー
+  // 入力されたデータからアセットパイプラインを利用して画像を選択して取得
   confirmIcon(event) {
     const selectedCategory = this.categorySelectTarget.value
-    if (!selectedCategory) {
-      event.preventDefault()
-      alert("カテゴリーを選択してください")
-      return false
-    }
-
-    // 入力されたデータからアセットパイプラインを利用して画像を選択して取得
     const hidden = document.createElement("input")
-    const iconPath = this.iconMapping[selectedCategory] || this.iconMapping["others"]
+    const iconPath = this.iconMapping[selectedCategory]
     hidden.type = "hidden"
     hidden.name = "item[icon_path]" //params[:item][:icon_path]と同義
     hidden.value = iconPath
     event.target.appendChild(hidden)
-
     return true
   }
 
@@ -45,11 +37,10 @@ export default class extends Controller {
     this.categorySelectTarget.addEventListener('change', () => this.updateUnit());
   }
 
-  // switch文で選択したvalueを返す
+  // 選択したvalueを返す
   updateUnit() {
     let unit = "";
     const value = this.categorySelectTarget.value;
-
     switch(value) {
       case "shampoo":
       case "body_soap":

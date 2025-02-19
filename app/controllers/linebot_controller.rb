@@ -7,12 +7,10 @@ class LinebotController < ApplicationController
 
     def callback
         signature = request.env["HTTP_X_LINE_SIGNATURE"]
-
         unless client.validate_signature(request_body, signature)
             head :bad_request
             return
         end
-
         events = client.parse_events_from(request_body)
         events.each do |event|
             client.reply_message(event["replyToken"], message(event))
