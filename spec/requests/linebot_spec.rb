@@ -62,7 +62,7 @@ RSpec.describe "LinebotController", type: :request do
       end
     end
 
-    context '”在庫補充”と入力後、【商品名】の入力をすると在庫補充が成功すること' do
+    context '”在庫補充”と入力後、【商品名】が入力された時' do
       let(:message_text) { "#{item.name}" }
       let(:item) { create(:item, user: user) }
       let!(:notification) { create(:notification, item: item) }

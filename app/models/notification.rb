@@ -4,6 +4,7 @@ class Notification < ApplicationRecord
 
   validate :valid_update_next_notification_day
 
+  # itemモデル
   def item_update_next_notification_day
     new_notification_day = item.calculate_next_notification_day
     interval = (new_notification_day - Date.today).to_i
@@ -11,6 +12,7 @@ class Notification < ApplicationRecord
                 notification_interval: interval)
   end
 
+  # notificationモデル
   def notification_update_next_notification_day(new_notification_day)
     interval = (new_notification_day - Date.today).to_i
     self.update(next_notification_day: new_notification_day,
@@ -21,6 +23,7 @@ class Notification < ApplicationRecord
     self.update(last_notification_day: Date.today)
   end
 
+  # LineBot
   def line_update_next_notification_day
     interval_days = item.line_calculate_next_notification_day
     new_notification_day = Date.today + interval_days
@@ -35,7 +38,6 @@ class Notification < ApplicationRecord
 
     if line_user_id.present?
       message = self.create_notification_message
-
       begin
         client.push_message(line_user_id, {
           type: "text",
