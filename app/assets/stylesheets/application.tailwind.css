@@ -35,7 +35,6 @@
     min-height: 100vh;
 }
 
-// ブラウザのデフォルト設定であるアクティブ属性を無効化
 .btn {
     transition: none !important;
     transform: none !important;
