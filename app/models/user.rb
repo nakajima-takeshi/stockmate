@@ -24,14 +24,12 @@ class User < ApplicationRecord
     credentials = omniauth["credentials"]
     info = omniauth["info"]
 
-    # 保存する認証情報
     access_token = credentials["refresh_token"]
     access_secret = credentials["secret"]
     credentials = credentials.to_json
     name = info["name"]
   end
 
-  # LINE APIから取得したユーザー情報を保存
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!

@@ -59,7 +59,6 @@ class Notification < ApplicationRecord
     message
   end
 
-  # 本日の通知対象をまとめて一括で通知する
   def self.send_notifications
     notifications = date_of_notification
     notifications.each do |notification|
