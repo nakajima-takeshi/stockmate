@@ -11,15 +11,11 @@ RSpec.describe LineNotificationService, type: :service do
     let(:item) { create(:item, user: user) }
     let(:notification) { create(:notification, item: item) }
 
-    before do
-        allow_any_instance_of(LineNotificationService).to receive(:client).and_return(client)
-    end
-
     describe 'line_notification_serviceについて' do
         it '通知を送信すること' do
             service = LineNotificationService.new(notification)
-
             service_double = double('Line::Bot::Client')
+
             allow_any_instance_of(LineNotificationService).to receive(:client).and_return(service_double)
 
             expect(service_double).to receive(:push_message)
