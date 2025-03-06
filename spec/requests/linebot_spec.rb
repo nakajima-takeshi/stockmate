@@ -10,6 +10,12 @@ RSpec.describe "LinebotController", type: :request do
   let(:user)  { User.from_omniauth(auth) }
   let(:user_id) { '12345' }
 
+  let(:client) do
+    double('Line::Bot::Client').tap do |client|
+      allow(client).to receive(:reply_message).and_return(true)
+    end
+  end
+
   before do
     allow_any_instance_of(LinebotController).to receive(:client).and_return(client)
   end
@@ -42,11 +48,18 @@ RSpec.describe "LinebotController", type: :request do
       let(:item) { create(:item, user: user) }
       let!(:notification) { create(:notification, item: item) }
 
-      it 'get_inventory_listメソッドがitem.nameを返すこと' do
+      it 'LineNotificationFormatterを呼び出し、登録されている日用品を返すこと' do
         controller = LinebotController.new
+
+        service_double = instance_double(LineMessageFormatter)
+        formatted_message = "商品名: 【#{item.name}】"
+
+        allow(LineMessageFormatter).to receive(:new).and_return(service_double)
+        allow(service_double).to receive(:call).and_return(formatted_message)
+
         response = controller.send(:handle_message_event, event)
         expect(response[:type]).to eq('text')
-        expect(response[:text]).to include(item.name)
+        expect(response[:text]).to include(formatted_message)
       end
     end
 
