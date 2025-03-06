@@ -11,8 +11,8 @@ class LineMessageFormatter
         end
     end
     # 登録一覧のメッセージ
-    def create_items_message
-        @items.map do |item|
+    def create_items_message(items)
+        items.map do |item|
             item_lists = [
                 "商品名: 【#{item.name}】",
                 "カテゴリー: #{I18n.t("categories.#{item.category}", default: item.category)}",
@@ -27,3 +27,4 @@ class LineMessageFormatter
             item_lists.join("\n")
         end.join("\n")
     end
+end
