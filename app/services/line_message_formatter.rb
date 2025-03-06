@@ -4,14 +4,10 @@ class LineMessageFormatter
     end
 
     def call
-        if @items.present?
-            create_items_message(@items)
-        else
-            "登録されている日用品はありません。"
-        end
+        create_items(@items)
     end
     # 登録一覧のメッセージ
-    def create_items_message(items)
+    def create_items(items)
         items.map do |item|
             item_lists = [
                 "商品名: 【#{item.name}】",
