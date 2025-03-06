@@ -10,16 +10,6 @@ RSpec.describe "LinebotController", type: :request do
   let(:user)  { User.from_omniauth(auth) }
   let(:user_id) { '12345' }
 
-  let(:client) do
-    double('Line::Bot::Client').tap do |client|
-      allow(client).to receive(:reply_message).and_return(true)
-    end
-  end
-
-  before do
-    allow_any_instance_of(LinebotController).to receive(:client).and_return(client)
-  end
-
   describe 'handle_message_eventについて' do
     let(:event) do
       event_hash = {
@@ -40,7 +30,7 @@ RSpec.describe "LinebotController", type: :request do
       allow(event_double).to receive(:[]).with('source').and_return(event_hash['source'])
       allow(event_double).to receive(:source).and_return(event_hash['source'])
 
-      event_double
+      event_double # モック化したevent_doubleを返す
     end
 
     context '"登録確認"と入力された時' do
@@ -50,12 +40,11 @@ RSpec.describe "LinebotController", type: :request do
 
       it 'LineNotificationFormatterを呼び出し、登録されている日用品を返すこと' do
         controller = LinebotController.new
+        items = [ item ]
+        line_message_formatter = LineMessageFormatter.new(items)
+        formatted_message = line_message_formatter.send(:create_items, items)
 
-        service_double = instance_double(LineMessageFormatter)
-        formatted_message = "商品名: 【#{item.name}】"
-
-        allow(LineMessageFormatter).to receive(:new).and_return(service_double)
-        allow(service_double).to receive(:call).and_return(formatted_message)
+        allow(LineMessageFormatter).to receive(:new).and_return(line_message_formatter)
 
         response = controller.send(:handle_message_event, event)
         expect(response[:type]).to eq('text')

@@ -13,9 +13,9 @@ RSpec.describe LineMessageFormatter, type: :service do
 
     describe 'line_message_formatterについて' do
         it '正しくフォーマットされたアイテムリストを返す' do
-            items = [item] # item_listの形式に合わせる
+            items = [ item ] # item_listの形式に合わせる
             line_message_formatter = LineMessageFormatter.new(items)
-            formatted_message = line_message_formatter.create_items(items)
+            formatted_message = line_message_formatter.send(:create_items, items)
 
             expect(formatted_message).to include("商品名: 【#{item.name}】")
             expect(formatted_message).to include("カテゴリー: #{I18n.t("categories.#{item.category}", default: item.category)}")

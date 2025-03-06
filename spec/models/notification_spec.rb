@@ -37,13 +37,16 @@ RSpec.describe Notification, type: :model do
   describe '通知メッセージの作成' do
     let!(:notification) { create(:notification, item: item) }
 
-    it '成功する' do
+    it 'メッセージの作成に成功する' do
       allow(notification).to receive(:next_notification_day).and_return(Date.today)
-      created_message = "商品名【Test_item】の在庫補充をしてください。\n"\
-                        "カテゴリー : シャンプー\n" \
-                        "メモ書きがあります。\n" \
-                        "メモ内容 : test\n"
-      expect(notification.create_notification_message).to eq created_message
+
+      line_notification_service = LineNotificationService.new(notification)
+      notification_message = line_notification_service.send(:create_notification_message)
+
+      expect(notification_message).to include("商品名【#{item.name}】の在庫補充をしてください。\n")
+      expect(notification_message).to include("カテゴリー : #{I18n.t("categories.#{item.category}", default: item.category)}\n")
+      expect(notification_message).to include("メモ書きがあります。\n")
+      expect(notification_message).to include("メモ内容 : #{item.memo}\n")
     end
   end
 end

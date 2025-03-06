@@ -9,6 +9,8 @@ class LineNotificationService
         push_line_notification(@notification)
     end
 
+    private
+
     def push_line_notification(notification)
         user = @notification.item&.user
         line_user_id = user&.uid
