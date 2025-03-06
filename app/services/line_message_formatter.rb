@@ -6,6 +6,9 @@ class LineMessageFormatter
     def call
         create_items(@items)
     end
+
+    private
+
     # 登録一覧のメッセージ
     def create_items(items)
         items.map do |item|
