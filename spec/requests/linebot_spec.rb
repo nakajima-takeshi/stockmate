@@ -10,12 +10,6 @@ RSpec.describe "LinebotController", type: :request do
   let(:user)  { User.from_omniauth(auth) }
   let(:user_id) { '12345' }
 
-  let(:client) do
-    double('Line::Bot::Client').tap do |client|
-      allow(client).to receive(:reply_message).and_return(true)
-    end
-  end
-
   before do
     allow_any_instance_of(LinebotController).to receive(:client).and_return(client)
   end
