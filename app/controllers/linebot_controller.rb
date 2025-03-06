@@ -108,21 +108,8 @@ class LinebotController < ApplicationController
         end
     end
 
-    # 登録一覧のメッセージ
     def format_items_message(items)
-        items.map do |item|
-            item_lists = [
-                "商品名: 【#{item.name}】",
-                "カテゴリー: #{I18n.t("categories.#{item.category}", default: item.category)}",
-                "次回通知日: #{item.notification.next_notification_day}"
-            ]
-
-            if item.memo.present?
-                item_lists << "メモ内容: #{item.memo}"
-            end
-
-            item_lists << "-----------------"
-            item_lists.join("\n")
-        end.join("\n")
+        service = LineMessageFormatter.new(items)
+        service.call
     end
 end
