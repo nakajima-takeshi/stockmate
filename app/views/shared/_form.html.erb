@@ -17,7 +17,7 @@
             ['その他', 'others']], 
         { include_blank: '選択してください' }, { 
                      id: 'category-select', 
-                   data: { items_target: "categorySelect", category_icon_target: "select" }, 
+                   data: { action: "change->items#updateUnit", items_target: "categorySelect", category_icon_target: "select" }, 
                   class: "block w-full px-4 py-2 border border-gray-300 rounded shadow" } %>
     </div>
     <div class="mb-4 bg-gray-100 p-4 rounded">
