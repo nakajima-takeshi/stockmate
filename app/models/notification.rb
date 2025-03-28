@@ -53,9 +53,9 @@ class Notification < ApplicationRecord
   def valid_next_notification_day
     if next_notification_day.blank?
       errors.add(:next_notification_day, :blank_field)
-    elsif next_notification_day < Date.today + 1.days
+    elsif next_notification_day < Date.today + 1
       errors.add(:next_notification_day, :past_date)
-    elsif next_notification_day > Date.today + 365.days
+    elsif next_notification_day > (Date.today + 365)
       errors.add(:next_notification_day, :too_far)
     end
   end
