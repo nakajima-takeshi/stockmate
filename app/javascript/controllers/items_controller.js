@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["categorySelect", "unit", "select"];
+  static targets = ["categorySelect", "unit", "iconSelect"];
 
   // iconPathをマッピング
   iconMapping = {

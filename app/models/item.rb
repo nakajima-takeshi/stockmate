@@ -6,12 +6,13 @@ class Item < ApplicationRecord
     validates :name, presence: true, uniqueness: { scope: :user_id }, length: { maximum: 30 }
     validates :volume, presence: true, numericality: { only_integer: true, other_than: 0 }
     validates :used_count_per_weekly, presence: true, numericality: { only_integer: true, other_than: 0 }
-    validates :memo, length: { maximum: 65_535 }, allow_nil: true
+    validates :memo, length: { maximum: 65_535 }
 
     scope :order_by_notification_date_asc, -> { order(Notification.arel_table[:next_notification_day].asc) }
     scope :order_by_category, -> { order(category: :desc) }
     scope :order_by_updated_at, -> { order(updated_at: :desc) }
 
+    # 一日の平均使用量
     AVERAGE_USAGE = {
         "shampoo" => 6,
         "body_soap" => 6,
@@ -28,9 +29,7 @@ class Item < ApplicationRecord
     }
 
     def calculate_next_notification_day
-        if self.category == "others"
-            return Date.today + 14.days
-        end
+        return Date.today + 14.days if category == "others"
 
         daily_usage = calculate_daily_usage
         notification_volume = (self.volume * 1.0 / 3).ceil(2)
@@ -54,9 +53,7 @@ class Item < ApplicationRecord
     end
 
     def linebot_calculate_next_notification_day
-        if self.category == "others"
-            return 14
-        end
+        return 14 if self.category == "others"
 
         daily_usage = calculate_daily_usage
         notification_volume = (self.volume * 1.0 / 3).ceil(2)
