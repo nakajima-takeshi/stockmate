@@ -97,7 +97,7 @@ RSpec.describe Item, type: :model do
   describe '次回通知予定日の算出' do
     it '次回通知予定日を計算できる' do
       item = build(:item, user: user)
-      expect(item.calculate_next_notification_day).to eq(Date.today + 34.days)
+      expect(item.calculate_next_notification_day).to eq(Date.today + 34)
     end
   end
 end

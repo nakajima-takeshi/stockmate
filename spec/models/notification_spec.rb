@@ -28,7 +28,7 @@ RSpec.describe Notification, type: :model do
     end
 
     it '次回通知予定日が365日以上先だと失敗する' do
-      notification = build(:notification, next_notification_day: Date.today + 366.days)
+      notification = build(:notification, next_notification_day: Date.today + 366)
       expect(notification).to be_invalid
       expect(notification.errors.full_messages).to include('通知日は１年以内の日付を入力してください')
     end
