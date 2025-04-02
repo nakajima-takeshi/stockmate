@@ -78,7 +78,7 @@ ___[通知タイミング(何日後か) = (内包量 - 1日の推定消費量) <
 | インフラ     | Heroku, Cloudflare |
 | データベース | MySQL |
 | 認証        | Devise |
-| API         | LINE Messaging API, LINE Developers |
+| API         | LINE Messaging API |
 
 
 # ER図
